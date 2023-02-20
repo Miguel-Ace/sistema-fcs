@@ -21,6 +21,7 @@ use App\Http\Controllers\MetodosPagoController;
 use App\Http\Controllers\TipoEntregaController;
 use App\Http\Controllers\TipoPobrezaController;
 use App\Http\Controllers\BajasPadrinoController;
+use App\Http\Controllers\BecaController;
 use App\Http\Controllers\GradosEscolareController;
 use App\Http\Controllers\CentroEducativoController;
 use App\Http\Controllers\EntregasMensualeController;
@@ -67,6 +68,7 @@ Route::resource('/expedientes', ExpedienteController::class);
 // Route::resource('/asistencias', AsistenciaController::class);
 Route::resource('/tipo_asistencia', TipoAsistenciaController::class);
 Route::resource('/actividades', ActividadController::class);
+Route::resource('/beca', BecaController::class);
 
 // Route::resource('/detalle_actividades', DetalleActividadController::class);
 Route::get('/detalle_actividades', [DetalleActividadController::class, 'index']);
@@ -85,7 +87,15 @@ Route::resource('/padrinos', PadrinoController::class);
 Route::resource('/baja_padrinos', BajasPadrinoController::class);
 Route::resource('/cumpleanios', CumpleanioController::class);
 Route::resource('/entregas_mensuales', EntregasMensualeController::class);
-Route::resource('/detalle_entregas_mensuales', DetalleEntregasMensualeController::class);
+// Route::resource('/detalle_entregas_mensuales', DetalleEntregasMensualeController::class);
+
+Route::get('/detalle_entregas_mensuales', [DetalleEntregasMensualeController::class, 'index']);
+Route::get('/detalle_entregas_mensuales/create', [DetalleEntregasMensualeController::class, 'create']);
+Route::post('/detalle_entregas_mensuales/{id}', [DetalleEntregasMensualeController::class, 'store']);
+Route::get('/detalle_entregas_mensuales/{id}', [DetalleEntregasMensualeController::class, 'show']);
+Route::get('/detalle_entregas_mensuales/{id}/edit', [DetalleEntregasMensualeController::class, 'edit']);
+Route::patch('/detalle_entregas_mensuales/{id}/{start}', [DetalleEntregasMensualeController::class, 'update']);
+Route::delete('/detalle_entregas_mensuales/{id}/{start}', [DetalleEntregasMensualeController::class, 'destroy']);
 
 Auth::routes();
 

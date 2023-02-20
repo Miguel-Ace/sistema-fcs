@@ -26,41 +26,49 @@
           @endif
                 <form action="{{url('/actividades')}}" class="row" method="post">
                     @csrf
-                    <div class="col-md-3"> {{-- Inicio --}}
+                    <div class="col-md-4"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="actividad" class="form-label">Actividad</label>
-                          <input type="text" class="form-control" id="actividad" name="actividad" value="{{old('actividad')}}">
+                          <input type="text" class="form-control" id="actividad" name="actividad" style="@error('actividad') border: 2px solid red @enderror" value="{{old('actividad')}}">
                         </div>
                     </div>
 
-                    <div class="col-md-3"> {{-- Inicio --}}
+                    <div class="col-md-4"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_creacion" class="form-label">Fecha Creacion</label>
-                          <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" value="{{old('fecha_creacion')}}">
+                          <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" style="@error('fecha_creacion') border: 2px solid red @enderror" value="{{old('fecha_creacion')}}">
                         </div>
                     </div>
 
-                    <div class="col-md-3"> {{-- Inicio --}}
+                    <div class="col-md-4"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_actividad" class="form-label">Fecha Actividad</label>
-                          <input type="date" class="form-control" id="fecha_actividad" name="fecha_actividad" value="{{old('fecha_actividad')}}">
+                          <input type="date" class="form-control" id="fecha_actividad" name="fecha_actividad" style="@error('fecha_actividad') border: 2px solid red @enderror" value="{{old('fecha_actividad')}}">
                         </div>
                     </div>
 
-                    <div class="col-md-3"> {{-- Inicio --}}
+                    <div class="col-md-6"> {{-- Inicio --}}
                       <label for="id_tipo_asistencia" class="form-label">Tipo Asistencia</label>
-                      <select class="form-select mb-3" id="id_tipo_asistencia" name="id_tipo_asistencia">
+                      <select class="form-select mb-3" id="id_tipo_asistencia" style="@error('id_tipo_asistencia') border: 2px solid red @enderror" name="id_tipo_asistencia">
 
+                        <option value="" selected disabled>Selecciona el Tipo de Asistencia</option>
                         @foreach ($tipoAsistencias as $tipoAsistencia)
-                        <option value="{{$tipoAsistencia->id}}">{{$tipoAsistencia->tipo_asistencia}}</option>
+                        <option {{old('id_tipo_asistencia') == $tipoAsistencia->id ? 'selected' : ''}} value="{{$tipoAsistencia->id}}">{{$tipoAsistencia->tipo_asistencia}}</option>
                         @endforeach
                       </select>
+                    </div>
+
+                    <div class="col-md-6"> {{-- Inicio --}}
+                      <div class="mb-3">
+                        <label for="patrocinador" class="form-label">Patrocinador</label>
+                        <input type="text" class="form-control" id="patrocinador" name="patrocinador" style="@error('patrocinador') border: 2px solid red @enderror" value="{{old('patrocinador')}}">
+                      </div>
                     </div>
 
                     <div class="col-md-12"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="observacion" class="form-label">Observación</label>
-                          <input type="text" class="form-control" id="observacion" name="observacion" value="{{old('observacion')}}">
+                          <input type="text" class="form-control" id="observacion" name="observacion" style="@error('observacion') border: 2px solid red @enderror" value="{{old('observacion')}}">
                         </div>
                     </div>
 

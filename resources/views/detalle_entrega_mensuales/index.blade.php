@@ -4,16 +4,26 @@
     <h1 class="text-left p-2">Detalle Entregas Mensuales</h1>
     <div class="container">
         @role('admin')
-        <a href="{{url('/detalle_entregas_mensuales/create')}}" class="btn btn-warning mb-3">
+        <a href="{{url('/detalle_entregas_mensuales/create?buscar='.$start)}}" class="btn btn-warning mb-3">
             <ion-icon name="create-outline"></ion-icon>
             Nuevo Detalle de Entregas Mensuales
+        </a>
+
+        <a href="{{url('/entregas_mensuales')}}" class="btn btn-info mb-3">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Volver a Entregas Mensuales
         </a>
         @endrole
 
         @role('creador')
-        <a href="{{url('/detalle_entregas_mensuales/create')}}" class="btn btn-warning mb-3">
+        <a href="{{url('/detalle_entregas_mensuales/create?buscar='.$start)}}" class="btn btn-warning mb-3">
             <ion-icon name="create-outline"></ion-icon>
             Nuevo Detalle de Entregas Mensuales
+        </a>
+        
+        <a href="{{url('/entregas_mensuales')}}" class="btn btn-info mb-3">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Volver a Entregas Mensuales
         </a>
         @endrole
 
@@ -33,7 +43,13 @@
                     </form>
                 </div> --}}
 
-                <div class="buscador">
+                @foreach ($expedientes as $expediente)
+                    @if ($start == $expediente->id)
+                    <p class="parraf" style="font-size: 1.5rem; display: none">Expediente de : "<span style="color: green">{{$expediente->nombre1 . ' ' . $expediente->nombre2 . ' ' . $expediente->apellido1 . ' ' . $expediente->apellido2}}</span>" Seleccionado</p>
+                    @endif
+                @endforeach
+
+                {{-- <div class="buscador">
                     <form action="{{url('/detalle_entregas_mensuales')}}" method="GET" class="d-flex" role="search">
                         <select class="form-select mb-3" id="buscar" name="buscar">
                             <option value="">Selecciona expediente</option>
@@ -46,7 +62,7 @@
                             <button class="btn btn-outline-success" type="submit"><ion-icon name="search-outline"></ion-icon></button>
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -55,7 +71,7 @@
                     <thead>
                         <tr>
                             {{-- <th scope="col">#</th> --}}
-                            <th scope="col">Entrega Mensual</th>
+                            {{-- <th scope="col">Entrega Mensual</th> --}}
                             <th scope="col">Tipo Entrega</th>
                             @role('admin')
                                 <th scope="col">Acciones</th>
@@ -69,35 +85,38 @@
                         @foreach ($datos as $dato)
                             <tr>
 
-                                <th>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</th>
+                                @if ($dato->id_expediente == $start)
+                                    {{-- <th>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</th> --}}
 
-                                <th>{{$dato->tipo_entregas->tipo_entrega}}</th>
-                                @role('admin')
-                                    <td>
-                                        <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
-                                        |
-                                        <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
-                                        {{-- <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
-
-                                            @csrf
-                                            {{method_field('DELETE')}}
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')">Borrar</button>
-                                        </form> --}}
-                                    </td>
-                                @endrole
-                                @role('editor')
-                                    <td>
-                                        <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
-                                        |
-                                        <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
-                                        {{-- <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
-
-                                            @csrf
-                                            {{method_field('DELETE')}}
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')">Borrar</button>
-                                        </form> --}}
-                                    </td>
-                                @endrole
+                                    <th>{{$dato->tipo_entregas->tipo_entrega}}</th>
+                                    
+                                    @role('admin')
+                                        <td>
+                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            |
+                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit?buscar='.$start)}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
+                                            |
+                                            <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')"><ion-icon name="beaker-outline"></ion-icon></button>
+                                            </form>
+                                        </td>
+                                    @endrole
+                                    @role('editor')
+                                        <td>
+                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            |
+                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit?buscar='.$start)}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
+                                            |
+                                            <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')"><ion-icon name="beaker-outline"></ion-icon></button>
+                                            </form>
+                                        </td>
+                                    @endrole
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

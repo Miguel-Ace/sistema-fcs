@@ -22,6 +22,8 @@ return new class extends Migration
             $table->bigInteger('id_grado_escolar')->unsigned();
             $table->bigInteger('id_clasificacion_nota')->unsigned();
             $table->string('tipo_promedio');
+            $table->string('semaforo');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
 
             $table->foreign('id_expediente')->references('id')->on('expedientes');

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('fecha_entrega_carta');
             $table->string('entrega_carta_presentacion');
             $table->string('entrega_video');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
+            $table->string('regalo');
             $table->timestamps();
 
             $table->foreign('id_padrino')->references('id')->on('padrinos');

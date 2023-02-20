@@ -94,6 +94,8 @@
                                     <a href="{{url('entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
                                     |
                                     <a href="{{url('entregas_mensuales/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
+                                    |
+                                    <a href="{{url('/detalle_entregas_mensuales?buscar='.$dato->id)}}" class="btn btn-info"><ion-icon name="add-circle-outline"></ion-icon></a>
                                     {{-- |
                                     <form action="{{'entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
                                         @csrf

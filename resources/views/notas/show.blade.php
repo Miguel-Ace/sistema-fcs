@@ -21,6 +21,7 @@
                 <div>
                     <p><span>Expediente:</span> {{$datos->expedientes->nombre}} {{$datos->expedientes->apellido}}</p>
                     <p><span>Clasificación de Nota:</span> {{$datos->clasificacion_notas->clasificacion_nota}}</p>
+                    <p><span>Observaciones:</span> {{$datos->observaciones}}</p>
                 </div>
                 
                 <div>
@@ -30,6 +31,7 @@
                 
                 <div>
                     <p><span>Fecha:</span> {{$datos->fecha}}</p>
+                    <p><span>Semaforo:</span> {{$datos->semaforo}}</p>
                 </div>
                 
                 <div>

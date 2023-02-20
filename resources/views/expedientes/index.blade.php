@@ -46,6 +46,7 @@
                             <th scope="col">Sexo</th>
                             <th scope="col">Nombre Encargado</th>
                             <th scope="col">Telefono Encargado</th>
+                            <th scope="col">Semaforo</th>
                             @role('admin')
                                 <th scope="col">Acciones</th>
                             @endrole
@@ -64,6 +65,13 @@
                                 <td>{{$dato->sexo}}</td>
                                 <td>{{$dato->nombre_encargado}}</td>
                                 <td>{{$dato->telefono_encargado}}</td>
+                                @if ($dato->semaforo === "Verde")
+                                    <td style="background: rgba(83, 180, 83, .6)">{{$dato->semaforo}}</td>
+                                @elseif ($dato->semaforo === "Rojo")
+                                    <td style="background: rgba(218, 78, 78, .5)">{{$dato->semaforo}}</td>
+                                @else
+                                    <td style="background: rgba(255, 255, 0, .4)">{{$dato->semaforo}}</td>
+                                @endif
                                 @role('admin')
                                     <td>
                                         <a href="{{url('expedientes/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>

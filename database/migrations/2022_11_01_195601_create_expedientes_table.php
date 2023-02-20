@@ -17,6 +17,7 @@ return new class extends Migration
             $table->engine="InnoDB";
             $table->id();
             $table->bigInteger('id_comunidad')->unsigned();
+            $table->string('codigo_nino');
             $table->string('nombre1');
             $table->string('nombre2');
             $table->string('apellido1');
@@ -38,6 +39,11 @@ return new class extends Migration
             $table->string('nombre_encargado');
             $table->string('telefono_encargado');
             $table->bigInteger('id_centro_educativo')->unsigned();
+            $table->string('padrino');
+            $table->string('escuela');
+            $table->string('semaforo');
+            $table->string('beca');
+            $table->string('edad');
             $table->timestamps();
 
 

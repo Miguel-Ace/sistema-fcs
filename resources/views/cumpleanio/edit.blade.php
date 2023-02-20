@@ -78,6 +78,14 @@
 
                 </div>{{-- Fin --}}
 
+                <div class="col-md-3">{{-- Inicio --}}
+                    <div class="mb-3">
+                        <label for="regalo" class="form-label">Regalo</label>
+                        <input type="text" class="form-control" id="regalo" name="regalo" value="{{$datos->regalo}}">
+                    </div>
+
+                </div>{{-- Fin --}}
+
                 <div class="mb-3">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <input type="text" class="form-control" value="{{$datos->observaciones}}" id="observaciones" name="observaciones">

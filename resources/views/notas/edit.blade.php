@@ -89,6 +89,24 @@
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" class="form-control" value="{{$datos->fecha}}" id="fecha" name="fecha">
                     </div>
+
+                    <label for="semaforo" class="form-label">Semáforo</label>
+                    <select class="form-select mb-3" id="semaforo" name="semaforo">
+
+                                @if ($datos->semaforo === "Verde")
+                                    <option value="Verde" selected>Verde</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                @elseif ($datos->semaforo === "Rojo")
+                                    <option value="Verde">Verde</option>
+                                    <option value="Rojo" selected>Rojo</option>
+                                    <option value="Amarillo">Amarillo</option>
+                                @else
+                                    <option value="Verde">Verde</option>
+                                    <option value="Rojo">Rojo</option>
+                                    <option value="Amarillo" selected>Amarillo</option>
+                                @endif
+                            </select>
                 </div>{{-- Fin --}}
                 
                 <div class="col-md-3">{{-- Inicio --}}
@@ -104,6 +122,11 @@
                     </select>
                 </div>{{-- Fin --}}
 
+                <div class="mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <input type="text" class="form-control" id="observaciones" name="observaciones" value="{{$datos->observaciones}}">
+                </div>
+                
                 <button type="submit" class="btn btn-primary enviar">
                     <ion-icon name="save-outline"></ion-icon>
                     Guardar

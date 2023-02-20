@@ -65,6 +65,13 @@
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" class="form-control" id="fecha" name="fecha" value="{{old('fecha')}}">
                     </div>
+
+                    <label for="semaforo" class="form-label">Semáforo</label>
+                        <select class="form-select mb-3" id="semaforo" name="semaforo">
+                            <option value="Verde">Verde</option>
+                            <option value="Rojo">Rojo</option>
+                            <option value="Amarillo">Amarillo</option>
+                        </select>
                 </div>{{-- Fin --}}
 
                 <div class="col-md-3">{{-- Inicio --}}
@@ -75,6 +82,11 @@
                         @endforeach
                     </select>
                 </div>{{-- Fin --}}
+                
+                <div class="mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <input type="text" class="form-control" id="observaciones" name="observaciones" value="{{old('observaciones')}}">
+                </div>
 
                 <button type="submit" class="btn btn-primary enviar">
                     <ion-icon name="save-outline"></ion-icon>

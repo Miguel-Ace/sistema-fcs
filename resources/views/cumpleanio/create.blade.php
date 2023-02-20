@@ -34,8 +34,8 @@
                     <select class="form-select mb-3" id="id_padrino" name="id_padrino">
                     @foreach ($padrinos as $padrino)
                         @foreach ($datos as $dato)
-                            @if ($padrino->id == $dato->id_padrino)
-                                {{$valor = $padrino->id}}
+                            @if ($dato->id_padrino == $padrino->id)
+                                {{$valor = $dato->id_padrino}}
                             @endif
                         @endforeach
 
@@ -77,6 +77,13 @@
                         <input type="date" class="form-control" id="entrega_video" name="entrega_video" value="{{old('entrega_video')}}">
                     </div>
 
+                </div>{{-- Fin --}}
+
+                <div class="col-md-3">{{-- Inicio --}}
+                    <div class="mb-3">
+                        <label for="regalo" class="form-label">Regalo</label>
+                        <input type="text" class="form-control" id="regalo" name="regalo" value="{{old('regalo')}}">
+                    </div>
                 </div>{{-- Fin --}}
 
                 <div class="mb-3">
@@ -153,7 +160,14 @@
                     </div>
 
                 </div>{{-- Fin --}}
-
+                
+                <div class="col-md-3">{{-- Inicio --}}
+                    <div class="mb-3">
+                        <label for="regalo" class="form-label">Regalo</label>
+                        <input type="text" class="form-control" id="regalo" name="regalo" value="{{old('regalo')}}">
+                    </div>
+                </div>{{-- Fin --}}
+                
                 <div class="mb-3">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <input type="text" class="form-control" id="observaciones" name="observaciones">

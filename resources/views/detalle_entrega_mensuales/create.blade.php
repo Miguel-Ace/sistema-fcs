@@ -4,7 +4,7 @@
     <h1 class="text-left p-2">Detalle Entregas Mensuales</h1>
     <div class="container">
 
-      <a href="{{url('/detalle_entregas_mensuales')}}" class="btn btn-warning mb-3">
+      <a href="{{url('/detalle_entregas_mensuales?buscar='.$start)}}" class="btn btn-warning mb-3">
         <ion-icon name="arrow-undo-outline"></ion-icon>
           Volver a lista de detalle Entregas Mensuales
       </a>
@@ -24,13 +24,13 @@
                   @endforeach
               </ul>
             @endif
-          <form action="{{url('/detalle_entregas_mensuales')}}" class="" method="post">
+          <form action="{{url('/detalle_entregas_mensuales'.'/'.$start)}}" class="" method="post">
             @csrf
-            <div class="col-md-5">
+            <div class="col-md-5 d-none">
                 <label for="id_expediente" class="form-label">Entrega Mensual</label>
                 <select class="form-select mb-3" id="id_expediente" name="id_expediente">
                     @foreach ($expedientes as $expediente)
-                        <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
+                        <option value="{{$start}}" selected>{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                     @endforeach
                 </select>
             </div>

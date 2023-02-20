@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividad;
 use App\Models\DetalleActividad;
+use App\Models\EntregasMensuale;
 use App\Models\Expediente;
 use Illuminate\Http\Request;
 use Mockery\Undefined;
@@ -41,6 +42,7 @@ class DetalleActividadController extends Controller
         $busqueda = $request->buscar;
         $actividades = Actividad::all();
         $expedientes = Expediente::all();
+        $entregaMensual = EntregasMensuale::all();
         $datos = DetalleActividad::where('id_actividad','like','%'.$busqueda.'%')
                                     // ->orWhere('id_actividad','like','%'.$busqueda.'%')
                                     ->paginate(6);
@@ -49,7 +51,7 @@ class DetalleActividadController extends Controller
                                     //     $valor = $dato->id_expediente;
                                     // }
                                     $valor = 0;
-        return view('detalle_actividad.create', compact('expedientes','actividades','datos','start','valor'));
+        return view('detalle_actividad.create', compact('expedientes','actividades','datos','start','valor','entregaMensual'));
     }
 
     /**

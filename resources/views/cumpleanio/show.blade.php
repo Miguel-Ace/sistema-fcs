@@ -30,6 +30,7 @@
 
                 <div>
                     <p><span>Fecha Entrega de Carta:</span> {{$datos->fecha_entrega_carta}}</p>
+                    <p><span>Regalo:</span> {{$datos->regalo}}</p>
                 </div>
                 
                 <div>

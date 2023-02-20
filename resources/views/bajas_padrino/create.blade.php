@@ -32,6 +32,7 @@
                 <div class="col-md-3">
                     <label for="id_padrino" class="form-label">Padrino</label>
                         <select class="form-select mb-3" id="id_padrino" name="id_padrino">
+                            <option value="" selected disabled>Selecciona el padrino</option>
                         @foreach ($padrinos as $padrino)
                             @foreach ($datos as $dato)
                                 @if ($dato->id_padrino == $padrino->id)
@@ -42,7 +43,7 @@
                             @if ($valor == $padrino->id)
 
                             @else
-                                <option value="{{$padrino->id}}">{{$padrino->nombre}} {{$padrino->apellido}}</option>
+                                <option {{old('id_padrino') == $padrino->id ? 'selected' : ''}} value="{{$padrino->id}}">{{$padrino->nombre}} {{$padrino->apellido}}</option>
                             @endif
                           @endforeach
                         </select>
@@ -56,8 +57,9 @@
                     <div class="col-md-3">
                         <label for="id_expediente" class="form-label">Expediente</label>
                         <select class="form-select mb-3" id="id_expediente" name="id_expediente">
+                            <option value="" selected disabled>Selecciona el expediente</option>
                             @foreach ($expedientes as $expediente)
-                            <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
+                            <option {{old('id_expediente') == $expediente->id ? 'selected' : ''}} value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -72,8 +74,9 @@
                     <div class="col-md-3">
                         <label for="id_motivo_baja" class="form-label">Motivo Baja</label>
                         <select class="form-select mb-3" id="id_motivo_baja" name="id_motivo_baja">
+                            <option value="" selected disabled>Selecciona el motivo de baja</option>
                             @foreach ($motivoBajas as $motivoBaja)
-                                <option value="{{$motivoBaja->id}}">{{$motivoBaja->motivo_baja}}</option>
+                                <option {{old('id_motivo_baja') == $motivoBaja->id ? 'selected' : ''}} value="{{$motivoBaja->id}}">{{$motivoBaja->motivo_baja}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -102,27 +105,37 @@
                   <form action="{{url('/baja_padrinos')}}" class="row" method="post">
                       @csrf
 
-                    <div class="col-md-3">
+                      <div class="col-md-3">
                         <label for="id_padrino" class="form-label">Padrino</label>
-                        <select class="form-select mb-3" id="id_padrino" name="id_padrino">
-
-                          @foreach ($padrinos as $padrino)
-                              <option value="{{$padrino->id}}">{{$padrino->nombre}}</option>
+                            <select class="form-select mb-3" id="id_padrino" name="id_padrino">
+                                <option value="" selected disabled>Selecciona el padrino</option>
+                            @foreach ($padrinos as $padrino)
+                                @foreach ($datos as $dato)
+                                    @if ($dato->id_padrino == $padrino->id)
+                                        {{$valor = $dato->id_padrino}}
+                                    @endif
+                                @endforeach
+    
+                                @if ($valor == $padrino->id)
+    
+                                @else
+                                    <option {{old('id_padrino') == $padrino->id ? 'selected' : ''}} value="{{$padrino->id}}">{{$padrino->nombre}} {{$padrino->apellido}}</option>
+                                @endif
                               @endforeach
                             </select>
-
+    
                             <div class="mb-3">
                                 <label for="quien_sale" class="form-label">Quien sale</label>
-                                <input type="text" class="form-control" id="quien_sale" name="quien_sale">
+                                <input type="text" class="form-control" id="quien_sale" name="quien_sale" value="{{old('quien_sale')}}">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <label for="id_expediente" class="form-label">Expediente</label>
                             <select class="form-select mb-3" id="id_expediente" name="id_expediente">
-
+                                <option value="" selected disabled>Selecciona el expediente</option>
                                 @foreach ($expedientes as $expediente)
-                                <option value="{{$expediente->id}}">{{$expediente->id}}</option>
+                                <option {{old('id_expediente') == $expediente->id ? 'selected' : ''}} value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -137,9 +150,9 @@
                         <div class="col-md-3">
                             <label for="id_motivo_baja" class="form-label">Motivo Baja</label>
                             <select class="form-select mb-3" id="id_motivo_baja" name="id_motivo_baja">
-
+                                <option value="" selected disabled>Selecciona el motivo de baja</option>
                                 @foreach ($motivoBajas as $motivoBaja)
-                                    <option value="{{$motivoBaja->id}}">{{$motivoBaja->motivo_baja}}</option>
+                                    <option {{old('id_motivo_baja') == $motivoBaja->id ? 'selected' : ''}} value="{{$motivoBaja->id}}">{{$motivoBaja->motivo_baja}}</option>
                                 @endforeach
                             </select>
                         </div>

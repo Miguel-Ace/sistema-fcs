@@ -33,6 +33,7 @@
 
                         <label for="id_expediente" class="form-label">Expediente</label>
                         <select class="form-select mb-3" id="id_expediente" name="id_expediente">
+                            <option value="" disabled selected>Seleccione un expediente</option>
                             @foreach ($expedientes as $expediente)
                                 <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                             @endforeach
@@ -62,7 +63,7 @@
                                 @if ($valor == $padrino->id)
 
                                 @else
-                                    <option value="{{$padrino->id}}">{{$padrino->nombre}} {{$padrino->apellido}}</option>
+                                    <option value="{{$padrino->id}}" class="d-none">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -126,4 +127,23 @@
         @role('creador')
         @endrole
     </div>
+
+    <script>
+        const expediente = document.getElementById('id_expediente');
+        const padrino = document.getElementById('id_padrino');
+        
+        expediente.onclick = (e) => {
+            let tablaExpedientes = JSON.parse('{!! json_encode($expedientes) !!}');
+            let valor = expediente.value;
+            tablaExpedientes.forEach(element => {
+                let idExpediente = element.id;
+                let padrinoExpediente = element.padrino;
+                if (valor == idExpediente) {
+                    // console.log(idExpediente);
+                    // console.log(padrino.innerText);
+                    padrino.value = padrinoExpediente;
+                }
+            });
+        }
+    </script>
 @endsection

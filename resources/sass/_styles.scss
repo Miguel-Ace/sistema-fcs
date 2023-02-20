@@ -9,12 +9,17 @@
 ::after{
     box-sizing: inherit;
 }
-
 body{
     background: #F8F9F9;
-    display: flex;
-    justify-content: space-between;
     font-family: 'Signika Negative', sans-serif;
+}
+@media (min-width: 1200px) {
+    body{
+        background: #F8F9F9;
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Signika Negative', sans-serif;
+    }
 }
 hr{
     color: white;
@@ -26,17 +31,15 @@ img{
 tr td a ion-icon{
     font-size: 1.6rem;
 }
-// tr td form button ion-icon{
-//     font-size: 1rem;
-// }
-// tr td a{
-//     padding: 2px 5px !important;
-// }
+
 tr td form button{
     padding: 2px 5px !important;
 }
 h1{
     opacity: .7;
+}
+.container{
+    max-width: 100% !important;
 }
 .container a{
     padding: 2px 5px !important;
@@ -52,6 +55,21 @@ h1{
     box-shadow: -10px 0 40px rgba(0,0,0, .5);
     border-radius: .2rem;
     border-left: 5px solid #0f2e2e;
+    div:nth-child(2){
+        overflow: scroll;
+        table tbody tr td:last-child{
+            display: grid;
+            grid-template-columns: 1fr;
+            @media (min-width: 768px) {
+                display: contents;
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        div:nth-child(2){
+            overflow: unset;
+        }
+    }
 }
 
 .parteSuperiorTablas{
@@ -63,11 +81,12 @@ h1{
         color: #0f2e2e;
     }
 }
+
 form{
     color: rgba(0,0,0, .7);
 }
 form .enviar{
-    width: 100px !important;
+    width: 100x !important;
     margin: 1rem;
 }
 form .enviar ion-icon{
@@ -123,16 +142,33 @@ form .enviar ion-icon{
 // Elementos Bases
 .lateral{
     background: #0f2e2e;
-    flex: 0 0 calc(15%);
+    min-width: 25%;
+    position: absolute;
+    z-index: 1;
+    right: 0%;
+    top: 12%;
+    // @media (min-width: 768px) {
+    //     top: 12%;
+    // }
+
+    @media (min-width:1200px) {
+        min-width: unset;
+        position: unset;
+        flex: 0 0 calc(15%);
+    }
+
     transition: .5s ease;
     aside{
         .menuToggle{
+            @media (min-width:1200px) {
+    
+            }
             // position: fixed;
             // top: 0;
             // left: 0;
+            // border-bottom: 1px solid white;
             width: 100%;
             height: 60px;
-            // border-bottom: 1px solid white;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -161,16 +197,85 @@ form .enviar ion-icon{
             }
         }
 
+        .menuToggle2{
+            @media (min-width:1200px) {
+    
+            }
+            // position: fixed;
+            // top: 0;
+            // left: 0;
+            // border-bottom: 1px solid white;
+            width: 100%;
+            height: 60px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // padding: 0 23px;
+            margin: 0 auto;
+            // transform: translatex(75px);
+            &::before{
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 2px;
+                background: white;
+                transform: translateY(-8px);
+                transition: 0.5s;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 2px;
+                background: white;
+                transform: translateY(8px);
+                transition: 0.5s;
+                box-shadow: 0 -8px 0 white;
+            }
+        }
+
+        .menuToggle{
+            display: none;
+        }
+        @media (min-width:1200px) {
+            .menuToggle{
+                display: flex;
+            }
+            .menuToggle2{
+                display: none;
+            }
+        }
+
+        .flecha{
+            display: none;
+            @media (min-width:1200px) {
+                display: unset;
+            }
+        }
+
+        // &:hover ul{
+        //     display: unset;
+        // }
         ul{
             list-style: none;
             padding: 0;
+            display: none;
+            @media (min-width:1200px) {
+                display: unset;
+            }
             li{
                 padding: .6rem .8rem;
                 transition: .3s ease;
                 position: relative;
 
                 &:hover .flecha ion-icon{
-                    transform: rotate(180deg);
+                    transform: rotate(-90deg);
+
+                    @media (min-width:1200px) {
+                        transform: rotate(180deg);
+                        
+                    }
                 }
                 &:hover{
                     background: #F8F9F9;
@@ -190,16 +295,23 @@ form .enviar ion-icon{
                     color: white;
                     transition: .3s ease;
                 }
+
                 ul{
                     transition: .3s ease;
                     background: #0f2e2e;
                     position: absolute;
                     min-width: 100%;
                     // flex: 0 0 calc(300px);
-                    display: none;
                     z-index: 100;
-                    top: 45px;
-                    left: 0;
+                    bottom: -11.4rem;
+                    right: 100%;
+                    @media (min-width:1200px) {
+                        display: none;
+                        top: 45px;
+                        left: 0;
+                        bottom: unset;
+                        right: unset;
+                    }
                     li{
                         &:hover{
                             background: white;
@@ -209,6 +321,7 @@ form .enviar ion-icon{
                         }
                     }
                 }
+
                 a{
                     text-decoration: none;
                     color: white;
@@ -218,33 +331,43 @@ form .enviar ion-icon{
                         transform: rotate(90deg);
                     }
                     ion-icon{
-                        font-size: 1.3rem;
+                        font-size: 0%;
                         transition: .3s ease;
+                        @media (min-width:1200px) {
+                            font-size: 1.3rem;
+                            transition: .3s ease;
+                        }
                     }
                 }
             }
         }
+        #ul1{
+            display: none;
+        }
     }
-    &.open .menuToggle::before{
-        transform: translateY(0px) rotate(45deg);
-    }
-    &.open{
-        flex: 0 0 calc(5%);
-    }
-    &.open .flecha ion-icon{
-        transform: rotate(90deg);
-    }
-    &.open ul li .a{
-        font-size: 0;
-    }
-    // &.open ul li{
-    // }
-    &.open ul li a ion-icon{
-        font-size: 2rem;
-    }
-    &.open .menuToggle::after{
-        transform: translateY(0px) rotate(-45deg);
-        box-shadow: 0 0 0 white;
+    
+    @media (min-width:1200px) {
+        &.open .menuToggle::before{
+            transform: translateY(0px) rotate(45deg);
+        }
+        &.open{
+            flex: 0 0 calc(5%);
+        }
+        &.open .flecha ion-icon{
+            transform: rotate(90deg);
+        }
+        &.open ul li .a{
+            font-size: 0;
+        }
+        // &.open ul li{
+        // }
+        &.open ul li a ion-icon{
+            font-size: 2rem;
+        }
+        &.open .menuToggle::after{
+            transform: translateY(0px) rotate(-45deg);
+            box-shadow: 0 0 0 white;
+        }
     }
 }
 
@@ -263,7 +386,10 @@ form .enviar ion-icon{
         box-shadow: -10px 0 40px rgba(0,0,0, .5);
         padding: 2px 7px;
         .izq{
-            flex: 0 0 calc(10%);
+            flex: 0 0 calc(20%);
+            @media (min-width: 768px) {
+                flex: 0 0 calc(10%);
+            }
         }
         .der{
             flex: 0 0 calc(13%);

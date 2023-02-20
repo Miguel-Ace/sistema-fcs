@@ -21,12 +21,14 @@
                 <div>
                     <p><span>Nombres:</span> {{$datos->nombre1}} {{$datos->nombre2}}</p>
                     <p><span>Apellidos:</span> {{$datos->apellido1}} {{$datos->apellido2}}</p>
+                    <p><span>Padrino:</span> {{$datos->padrino}}</p>
                     <p><span>Fecha de Nacimiento:</span> {{$datos->fecha_nacimiento}}</p>
                     <p><span>PP:</span> {{$datos->pp}}</p>
                     <p><span>Sexo:</span> {{$datos->sexo}}</p>
                 </div>
                 
                 <div>
+                    <p><span>Código del niño:</span> {{$datos->codigo_nino}}</p>
                     <p><span>Cédula:</span> {{$datos->cedula}}</p>
                     <p><span>Tipo de Pobreza:</span> {{$datos->tipo_pobrezas->tipo_pobreza}}</p>
                     <p><span>Barrio:</span> {{$datos->barrios->barrio}}</p>
@@ -37,6 +39,7 @@
                 <div>
                     <p><span>Contacto del Representante:</span> {{$datos->contacto_representante}}</p>
                     <p><span>Grado Ecolar:</span> {{$datos->grados_escolares->grado_escolar}}</p>
+                    <p><span>Escuela:</span> {{$datos->escuela}}</p>
                     <p><span>Talla de Pantalón:</span> {{$datos->talla_pantalon}}</p>
                     <p><span>Talla de Camisa:</span> {{$datos->talla_camisa}}</p>
                     <p><span>Talla de Zapatos:</span> {{$datos->talla_zapato}}</p>
@@ -47,7 +50,8 @@
                     <p><span>Nombre del Encargado:</span> {{$datos->nombre_encargado}}</p>
                     <p><span>Teléfono del Encargado:</span> {{$datos->telefono_encargado}}</p>
                     <p><span>Centro Educativo:</span> {{$datos->centro_educativos->centro_educativo}}</p>
-    
+                    <p><span>Beca:</span> {{$datos->beca}}</p>
+                    <p><span>Semaforo:</span> {{$datos->semaforo}}</p>
                 </div>
             </div>
         </div>

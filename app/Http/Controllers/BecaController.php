@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Actividad;
-use App\Models\Expediente;
-use App\Models\TipoAsistencia;
+use App\Models\Beca;
 use Illuminate\Http\Request;
 
-class ActividadController extends Controller
+class BecaController extends Controller
 {
     public function __construct()
     {
@@ -21,10 +19,10 @@ class ActividadController extends Controller
     public function index(Request $request)
     {
         $busqueda = $request->buscar;
-        $datos = Actividad::where('actividad','like','%'.$busqueda.'%')
-        ->orWhere('actividad','like','%'.$busqueda.'%')
+        $datos = Beca::where('id','like','%'.$busqueda.'%')
+        ->orWhere('beca','like','%'.$busqueda.'%')
         ->paginate(6);
-        return view('actividad.index', compact('datos','busqueda'));
+        return view('becas.index', compact('datos','busqueda'));
     }
 
     /**
@@ -34,8 +32,7 @@ class ActividadController extends Controller
      */
     public function create()
     {
-        $tipoAsistencias = TipoAsistencia::all();
-        return view('actividad.create', compact('tipoAsistencias'));
+        return view('becas.create');
     }
 
     /**
@@ -47,66 +44,60 @@ class ActividadController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'actividad' => 'required',
-            'fecha_creacion' => 'required',
-            'fecha_actividad' => 'required',
-            'id_tipo_asistencia' => 'required',
-            'patrocinador' => 'required',
-            // 'observacion' => 'required',
+            'beca' => 'required',
         ]);
         $datos = $request->except('_token');
-        Actividad::insert($datos);
-        return redirect('/actividades')->with('success','CREADO CORRECTAMENTE');
+        Beca::insert($datos);
+        return redirect('/beca');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Actividad  $actividad
+     * @param  \App\Models\Beca  $beca
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $datos = Actividad::find($id);
-        return view('actividad.show', compact('datos'));
+        $datos = Beca::find($id);
+        return view('becas.show', compact('datos'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Actividad  $actividad
+     * @param  \App\Models\Beca  $beca
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $datos = Actividad::findOrFail($id);
-        $tipoAsistencias = TipoAsistencia::all();
-        return view('actividad.edit', compact('datos','tipoAsistencias'));
+        $datos = Beca::findOrFail($id);
+        return view('becas.edit', compact('datos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Actividad  $actividad
+     * @param  \App\Models\Beca  $beca
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $datos = $request->except('_token','_method');
-        Actividad::where('id','=',$id)->update($datos);
-        return redirect('/actividades')->with('success','ACTUALIZADO CORRECTAMENTE');;
+        Beca::where('id','=',$id)->update($datos);
+        return redirect('/beca');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Actividad  $actividad
+     * @param  \App\Models\Beca  $beca
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Actividad::destroy($id);
-        return redirect('/actividades');
+        Beca::destroy($id);
+        return redirect('/beca');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barrio;
+use App\Models\Beca;
 use App\Models\Estado;
 use App\Models\Comunidad;
 use App\Models\Expediente;
@@ -10,6 +11,7 @@ use App\Models\TipoPobreza;
 use Illuminate\Http\Request;
 use App\Models\GradosEscolare;
 use App\Models\CentroEducativo;
+use App\Models\Padrino;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExpedienteController extends Controller
@@ -57,7 +59,10 @@ class ExpedienteController extends Controller
         $barrios = Barrio::all();
         $gradoEscolares = GradosEscolare::all();
         $centroEducativos = CentroEducativo::all();
-        return view('expedientes.create', compact('comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos'));
+        $padrinos = Padrino::all();
+        $becas = Beca::all();
+        $cantidad = Expediente::count();
+        return view('expedientes.create', compact('comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos','padrinos','becas','cantidad'));
     }
 
     /**
@@ -91,6 +96,10 @@ class ExpedienteController extends Controller
             'nombre_encargado' => 'required',
             'telefono_encargado' => 'required|min:8|max:8',
             'id_centro_educativo' => 'required',
+            'padrino' => 'required',
+            'escuela' => 'required',
+            'beca' => 'required',
+            'edad' => 'required',
         ]);
         $datos = $request->except('_token');
         Expediente::insert($datos);
@@ -124,7 +133,10 @@ class ExpedienteController extends Controller
         $barrios = Barrio::all();
         $gradoEscolares = GradosEscolare::all();
         $centroEducativos = CentroEducativo::all();
-        return view('expedientes.edit', compact('datos','comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos'));
+        $padrinos = Padrino::all();
+        $becas = Beca::all();
+        $cantidad = Expediente::count();
+        return view('expedientes.edit', compact('datos','comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos','padrinos','becas','cantidad'));
     }
 
     /**

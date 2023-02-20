@@ -25,6 +25,7 @@
 
                 <div>
                     <p><span>Fecha De Creación:</span> {{$datos->fecha_creacion}}</p>
+                    <p><span>Patrocinador:</span> {{$datos->patrocinador}}</p>
                 </div>
 
                 <div>

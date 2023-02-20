@@ -30,6 +30,11 @@
 
                   <div class="col-md-3">
 
+                    <div class="mb-3 d-none">
+                      <label for="codigo_nino" class="form-label">codigo_nino</label>
+                      <input type="text" class="form-control" id="codigo_nino" name="codigo_nino" value="{{$cantidad + 1 . '-' . date('Y')}}">
+                    </div>
+
                     <div class="mb-3">
                       <label for="nombre1" class="form-label">Primer Nombre</label>
                       <input type="text" class="form-control" id="nombre1" name="nombre1" value="{{old('nombre1')}}">
@@ -65,6 +70,13 @@
                       <input type="text" class="form-control" id="pp" name="pp" value="{{old('pp')}}">
                     </div>
 
+                    <label for="semaforo" class="form-label">Semáforo</label>
+                      <select class="form-select mb-3" id="semaforo" name="semaforo">
+                          <option value="Verde">Verde</option>
+                          <option value="Rojo">Rojo</option>
+                          <option value="Amarillo">Amarillo</option>
+                      </select>
+
                   </div>{{-- Fin --}}
 
                     <div class="col-md-3">{{-- Inicio --}}
@@ -74,6 +86,19 @@
                         <input type="text" class="form-control" id="nombre2" name="nombre2" value="{{old('nombre2')}}">
                       </div>
 
+                      <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" min="0" name="edad" value="{{old('edad')}}">
+                      </div>
+
+                      <label for="padrino" class="form-label">Padrino</label>
+                      <select class="form-select mb-3" id="padrino" name="padrino">
+                          <option value="" disabled selected>Selecciona el padrino</option>
+                          @foreach ($padrinos as $padrino)
+                              <option value="{{$padrino->id}}">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
+                          @endforeach
+                      </select>
+                      
                       <div class="mb-3">
                         <label for="representantePEM" class="form-label">RepresentantePEM</label>
                         <input type="text" class="form-control" id="representantePEM" name="representantePEM" value="{{old('representantePEM')}}">
@@ -85,8 +110,6 @@
                             <option value="{{$estado->id}}">{{$estado->estado}}</option>
                         @endforeach
                     </select>
-
-
 
                     <label for="id_barrio" class="form-label">Barrio</label>
                     <select class="form-select mb-3" id="id_barrio" name="id_barrio">
@@ -104,11 +127,6 @@
                         <option value="2XL">2XL</option>
                     </select>
 
-                    <div class="mb-3">
-                      <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
-                      <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
-                    </div>
-
                   </div>{{-- Fin --}}
 
                   <div class="col-md-3">{{-- Inicio --}}
@@ -116,6 +134,11 @@
                     <div class="mb-3">
                       <label for="apellido1" class="form-label">Primer Apellido</label>
                       <input type="text" class="form-control" id="apellido1" name="apellido1" value="{{old('apellido1')}}">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="escuela" class="form-label">Escuela</label>
+                      <input type="text" class="form-control" id="escuela" name="escuela" value="{{old('escuela')}}">
                     </div>
 
                     <div class="mb-3">
@@ -144,6 +167,11 @@
                         <option value="2XL">2XL</option>
                     </select>
 
+                    <label for="activo" class="form-label">Activo</label>
+                    <select class="form-select mb-3" id="activo" name="activo">
+                        <option value="Si" selected>Si</option>
+                        <option value="No">No</option>
+                    </select>
                     </div>{{-- Fin --}}
 
                     <div class="col-md-3">{{-- Inicio --}}
@@ -153,11 +181,18 @@
                         <input type="text" class="form-control" id="apellido2" name="apellido2" value="{{old('apellido2')}}">
                       </div>
 
-                    <label for="activo" class="form-label">Activo</label>
-                    <select class="form-select mb-3" id="activo" name="activo">
-                        <option value="Si" selected>Si</option>
-                        <option value="No">No</option>
-                    </select>
+                      <label for="beca" class="form-label">beca</label>
+                      <select class="form-select mb-3" id="beca" name="beca">
+                          <option value="" disabled selected>Selecciona una beca</option>
+                          @foreach ($becas as $beca)
+                              <option value="{{$beca->beca}}">{{$beca->beca}}</option>
+                          @endforeach
+                      </select>
+
+                      <div class="mb-3">
+                        <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
+                      </div>
 
                     <label for="id_centro_educativo" class="form-label">Centro Educativo</label>
                     <select class="form-select mb-3" id="id_centro_educativo" name="id_centro_educativo">

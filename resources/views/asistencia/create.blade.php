@@ -30,8 +30,9 @@
                       <label for="id_expediente" class="form-label">Expediente</label>
                       <select class="form-select mb-3" id="id_expediente" name="id_expediente">
 
+                        <option value="" selected disabled>Selecciona el Expediente</option>
                         @foreach ($expedientes as $expediente)
-                        <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
+                        <option {{old('id_expediente') == $expediente->id ? 'selected' : ''}} value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                         @endforeach
                       </select>
                     </div>

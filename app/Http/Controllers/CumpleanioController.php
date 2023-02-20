@@ -41,7 +41,8 @@ class CumpleanioController extends Controller
         $padrinos = Padrino::all();
         $bajaPadrinos = BajasPadrino::all();
         $datos = Cumpleanio::all();
-        return view('cumpleanio.create', compact('padrinos','bajaPadrinos','datos'));
+        $valor = 0;
+        return view('cumpleanio.create', compact('padrinos','bajaPadrinos','datos','valor'));
     }
 
     /**
@@ -58,7 +59,8 @@ class CumpleanioController extends Controller
             'fecha_entrega_carta' => 'required',
             'entrega_carta_presentacion' => 'required',
             'entrega_video' => 'required',
-            'observaciones' => 'required',
+            'regalo' => 'required',
+            // 'observaciones' => 'required',
         ]);
         $datos = $request->except('_token');
         Cumpleanio::insert($datos);

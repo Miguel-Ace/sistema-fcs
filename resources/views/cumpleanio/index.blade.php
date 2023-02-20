@@ -54,6 +54,7 @@
                             <th scope="col">Fecha Entrega de Carta</th>
                             <th scope="col">Entrega Carta Presentación</th>
                             <th scope="col">Entrega Video</th>
+                            <th scope="col">Regalo</th>
                             <th scope="col">Observacines</th>
                             @role('admin')
                             <th scope="col">Acciones</th>
@@ -80,6 +81,7 @@
                                         <td style="background: rgba(255,255,0,.3); color: red">{{$dato->fecha_entrega_carta}}</td>
                                         <td style="background: rgba(255,255,0,.3); color: red">{{$dato->entrega_carta_presentacion}}</td>
                                         <td style="background: rgba(255,255,0,.3); color: red">{{$dato->entrega_video}}</td>
+                                        <td style="background: rgba(255,255,0,.3); color: red">{{$dato->regalo}}</td>
                                         <td style="background: rgba(255,255,0,.3); color: red">{{$dato->observaciones}}</td>
                                         @role('admin')
                                         <td>
@@ -103,6 +105,7 @@
                                         <td style="color: red">{{$dato->fecha_entrega_carta}}</td>
                                         <td style="color: red">{{$dato->entrega_carta_presentacion}}</td>
                                         <td style="color: red">{{$dato->entrega_video}}</td>
+                                        <td style="color: red">{{$dato->regalo}}</td>
                                         <td style="color: red">{{$dato->observaciones}}</td>
                                         @role('admin')
                                         <td>
@@ -130,6 +133,7 @@
                                         <td style="background: rgba(255,255,0,.3)">{{$dato->fecha_entrega_carta}}</td>
                                         <td style="background: rgba(255,255,0,.3)">{{$dato->entrega_carta_presentacion}}</td>
                                         <td style="background: rgba(255,255,0,.3)">{{$dato->entrega_video}}</td>
+                                        <td style="background: rgba(255,255,0,.3)">{{$dato->regalo}}</td>
                                         <td style="background: rgba(255,255,0,.3)">{{$dato->observaciones}}</td>
                                         @role('admin')
                                         <td>
@@ -153,6 +157,7 @@
                                         <td>{{$dato->fecha_entrega_carta}}</td>
                                         <td>{{$dato->entrega_carta_presentacion}}</td>
                                         <td>{{$dato->entrega_video}}</td>
+                                        <td>{{$dato->regalo}}</td>
                                         <td>{{$dato->observaciones}}</td>
                                         @role('admin')
                                         <td>

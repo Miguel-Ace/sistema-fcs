@@ -53,8 +53,13 @@
                         </div>
                     </form>
                 </div>
-
             </div>
+            
+            @if (session('success'))
+                <div>
+                    <p style="color: rgb(44, 105, 44)">{{session('success')}}</p>
+                </div>
+            @endif
 
             <div class="col-md-12 fs-5">
                 <table class="table table-bordered table-hover">
@@ -65,6 +70,7 @@
                             <th scope="col">Fecha Creación</th>
                             <th scope="col">Fecha Actividad</th>
                             <th scope="col">Tipo Asistencia</th>
+                            <th scope="col">Patrocinador</th>
                             <th scope="col">Observación</th>
                             @role('admin')
                                 <th scope="col">Acciones</th>
@@ -82,6 +88,7 @@
                                 <td>{{$dato->fecha_creacion}}</td>
                                 <td>{{$dato->fecha_actividad}}</td>
                                 <td>{{$dato->tipoAsistencias->tipo_asistencia}}</td>
+                                <td>{{$dato->patrocinador}}</td>
                                 <td>{{$dato->observacion}}</td>
                                 @role('admin')
                                 <td>

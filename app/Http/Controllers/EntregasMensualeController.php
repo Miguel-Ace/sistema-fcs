@@ -41,8 +41,9 @@ class EntregasMensualeController extends Controller
         $padrinos = Padrino::all();
         $gradoescolars = GradosEscolare::all();
         $Bajapadrinos = BajasPadrino::all();
+        $entregasMensuales = EntregasMensuale::all();
         $valor = 0;
-        return view('entrega_mensuales.create', compact('padrinos','expedientes','gradoescolars','Bajapadrinos','valor'));
+        return view('entrega_mensuales.create', compact('padrinos','expedientes','gradoescolars','Bajapadrinos','valor','entregasMensuales'));
     }
 
     /**
@@ -62,7 +63,6 @@ class EntregasMensualeController extends Controller
             'talla_camisa' => 'required',
             'talla_zapato' => 'required',
             'grado_escolar' => 'required',
-            'observaciones' => 'required',
         ]);
         $datos = $request->except('_token');
         EntregasMensuale::insert($datos);

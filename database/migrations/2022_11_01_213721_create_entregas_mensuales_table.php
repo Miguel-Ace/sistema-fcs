@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('talla_camisa');
             $table->string('talla_zapato');
             $table->string('grado_escolar');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
 
             $table->foreign('id_expediente')->references('id')->on('expedientes');

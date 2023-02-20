@@ -21,11 +21,13 @@ class DetalleEntregasMensualeController extends Controller
      */
     public function index(Request $request)
     {
+        $start = $_GET['buscar'];
         $busqueda = $request->buscar;
+        $expedientes = Expediente::all();
         $datos = DetalleEntregasMensuale::where('id','like','%'.$busqueda.'%')
                             ->orWhere('id_expediente','like','%'.$busqueda.'%')
                             ->paginate(6);
-        return view('detalle_entrega_mensuales.index', compact('datos','busqueda'));
+        return view('detalle_entrega_mensuales.index', compact('datos','busqueda','start','expedientes'));
     }
 
     /**
@@ -35,11 +37,12 @@ class DetalleEntregasMensualeController extends Controller
      */
     public function create()
     {
+        $start = $_GET['buscar'];
         $entregaMensuales = EntregasMensuale::all();
         $tipoEntregas = TipoEntrega::all();
         $expedientes = Expediente::all();
         $datos = DetalleEntregasMensuale::all();
-        return view('detalle_entrega_mensuales.create', compact('tipoEntregas','entregaMensuales','datos','expedientes'));
+        return view('detalle_entrega_mensuales.create', compact('tipoEntregas','entregaMensuales','datos','expedientes','start'));
     }
 
     /**
@@ -48,7 +51,7 @@ class DetalleEntregasMensualeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $start)
     {
         request()->validate([
             'id_expediente' => 'required',
@@ -56,7 +59,7 @@ class DetalleEntregasMensualeController extends Controller
         ]);
         $datos = $request->except('_token');
         DetalleEntregasMensuale::insert($datos);
-        return redirect('/detalle_entregas_mensuales');
+        return redirect('/detalle_entregas_mensuales?buscar='.$start);
     }
 
     /**
@@ -83,7 +86,8 @@ class DetalleEntregasMensualeController extends Controller
         $entregaMensuales = EntregasMensuale::all();
         $tipoEntregas = TipoEntrega::all();
         $expedientes = Expediente::all();
-        return view('detalle_entrega_mensuales.edit', compact('datos','tipoEntregas','entregaMensuales','expedientes'));
+        $start = $_GET['buscar'];
+        return view('detalle_entrega_mensuales.edit', compact('datos','tipoEntregas','entregaMensuales','expedientes','start'));
     }
 
     /**
@@ -93,11 +97,11 @@ class DetalleEntregasMensualeController extends Controller
      * @param  \App\Models\DetalleEntregasMensuale  $detalleEntregasMensuale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $start)
     {
         $datos = $request->except('_token','_method');
         DetalleEntregasMensuale::where('id','=',$id)->update($datos);
-        return redirect('/detalle_entregas_mensuales');
+        return redirect('/detalle_entregas_mensuales?buscar='.$start);
     }
 
     /**
@@ -106,9 +110,9 @@ class DetalleEntregasMensualeController extends Controller
      * @param  \App\Models\DetalleEntregasMensuale  $detalleEntregasMensuale
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $start)
     {
         DetalleEntregasMensuale::destroy($id);
-        return redirect('/detalle_entregas_mensuales');
+        return redirect('/detalle_entregas_mensuales?buscar='.$start);
     }
 }

@@ -14,19 +14,22 @@
         <div class="parteSuperiorTablas">
             <p>Añadir participante</p>
             {{-- {{$start}} --}}
-            {{-- <div class="buscador">
+
+                {{-- <div class="buscador">
                     <form action="{{url('/detalle_actividades/create')}}" method="GET" class="d-flex" role="search">
-                        <select class="form-select mb-3" id="buscar" name="buscar">
-                            @foreach ($actividades as $actividad)
-                            <option value="{{$actividad->id}}">{{$actividad->actividad}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-select mb-3" id="buscar" name="buscar">
 
                         <div>
                             <button class="btn btn-outline-success" type="submit"><ion-icon name="search-outline"></ion-icon></button>
                         </div>
                     </form>
                 </div> --}}
+
+                {{-- <input type="number" min="0" max="50" id="edad"> --}}
+                {{-- <input type="number" min="0" max="50" id="edad2"> --}}
+            {{-- <form action="#">
+                <input type="submit">
+            </form> --}}
 
         </div>
 
@@ -72,8 +75,10 @@
                         <table class="table table-bordered table-hover">
                           <thead>
                               <tr>
-                                  <th scope="col">Expediente</th>
-                                  <th scope="col">Agregar</th>
+                                    <th scope="col">Expediente <input type="text" id="expediente-filtro"></th>
+                                    <th scope="col">Edad <input type="text" id="edad-filtro"></th>
+                                    <th scope="col">Semaforo <input type="text" id="semaforo-filtro"></th>
+                                    <th scope="col">Agregar</th>
                               </tr>
                           </thead>
                           <tbody class="text-center" id="listaParticipante">
@@ -86,16 +91,28 @@
                                         <p class="d-none">{{$valor = $expediente->id}}</p>
                                         @endif
                                     @endforeach
-                                        @if ($valor == $expediente->id)
-                                        @else
+                                        @if ($valor != $expediente->id)
                                             <th>{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</th>
 
-                                            <td>
-                                                <input type="text" class="form-control d-none" id="id_expediente" name="" value="{{$expediente->id}}">
+                                            <th>{{$expediente->edad}}</th>
+                                            
+                                            <th>{{$expediente->semaforo}}</th>
+                                        @else
+                                            <th style="color: green">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</th>
 
-                                                <button type="submit" class="btn btn-primary botoncin" id="btnEnviarParticipante">+</button>
-                                            </td>
+                                            <th style="color: green">{{$expediente->edad}}</th>
+                                            
+                                            <th style="color: green">{{$expediente->semaforo}}</th>
                                         @endif
+
+                                        <td>
+                                            <input type="text" id="nombrevalor" class="form-control d-none" id="id_expediente" name="" value="{{$expediente->id}}">
+                                            @if ($valor != $expediente->id)
+                                            <button type="submit" class="btn btn-primary botoncin" id="btnEnviarParticipante">+</button>
+                                            @else
+                                            <ion-icon style="font-size: 2rem" name="checkmark-done-outline"></ion-icon>
+                                            @endif
+                                        </td>
                                     @endrole
 
                                       @role('editor')
@@ -109,7 +126,7 @@
                     </div>
 
                     <div class="col-md-3 d-none">
-                        <label for="asistencia" class="form-label">Aistencia</label>
+                        <label for="asistencia" class="form-label">Asistencia</label>
                           <select class="form-select mb-3" id="asistencia" name="asistencia">
                               <option value="No">No</option>
                               <option value="Si">Si</option>
@@ -138,4 +155,64 @@
             </div>
         </div>
         @endrole
+
+        <script>
+
+            // Obtener el input de texto de filtrado por expediente
+            // const expedienteFiltro = document.getElementById("expediente-filtro");
+
+            // // Agregar un controlador de eventos de cambio
+            // expedienteFiltro.addEventListener("input", () => {
+            // // Obtener el valor del input de texto
+            // const filtro = expedienteFiltro.value.toLowerCase();
+
+            // // Obtener todas las filas de la tabla
+            // const filas = document.querySelectorAll("#listaParticipante tr");
+
+            // // Iterar sobre cada fila y ocultar o mostrar según corresponda
+            // filas.forEach((fila) => {
+            //     const expediente = fila.querySelector("th").textContent.toLowerCase();
+            //     if (expediente.includes(filtro)) {
+            //     fila.style.display = "";
+            //     } else {
+            //     fila.style.display = "none";
+            //     }
+            // });
+            // });
+
+
+            // Obtener los campos de entrada de texto y el cuerpo de la tabla
+            const expedienteFiltro = document.getElementById('expediente-filtro');
+            const semaforoFiltro = document.getElementById('semaforo-filtro');
+            const edadFiltro = document.getElementById('edad-filtro');
+            const tabla = document.getElementById('listaParticipante');
+
+            // Agregar un listener de eventos a los campos de entrada de texto
+            expedienteFiltro.addEventListener('input', filtrarTabla);
+            semaforoFiltro.addEventListener('input', filtrarTabla);
+            edadFiltro.addEventListener('input', filtrarTabla);
+
+            // Definir la función de filtrado de la tabla
+            function filtrarTabla() {
+            // Convertir los valores de entrada de texto a minúsculas para una comparación no sensible a mayúsculas
+            const expedienteValor = expedienteFiltro.value.toLowerCase();
+            const semaforoValor = semaforoFiltro.value.toLowerCase();
+            const edadValor = edadFiltro.value.toLowerCase();
+
+            // Recorrer cada fila de la tabla y ocultar aquellas que no cumplan con los criterios de búsqueda
+            for (let i = 0; i < tabla.rows.length; i++) {
+                const expediente = tabla.rows[i].cells[0].textContent.toLowerCase();
+                const edad = tabla.rows[i].cells[1].textContent.toLowerCase();
+                const semaforo = tabla.rows[i].cells[2].textContent.toLowerCase();
+
+                // Comprobar si la fila cumple con los criterios de búsqueda
+                if (expediente.indexOf(expedienteValor) > -1 && semaforo.indexOf(semaforoValor) > -1 && edad.indexOf(edadValor) > -1) {
+                tabla.rows[i].style.display = '';
+                } else {
+                tabla.rows[i].style.display = 'none';
+                }
+            }
+            }
+
+        </script>
 @endsection

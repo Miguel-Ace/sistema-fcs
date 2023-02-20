@@ -57,8 +57,8 @@
                             {{-- <th scope="col">Actividad</th> --}}
                             <th scope="col">Expediente</th>
                             {{-- <th scope="col">Asistencia</th> --}}
-                            {{-- <th scope="col">Semáforo</th> --}}
                             <th scope="col">Observación</th>
+                            <th scope="col">Semáforo</th>
                             @role('admin')
                             <th scope="col">Acciones</th>
                             @endrole
@@ -74,12 +74,12 @@
                                 {{-- <td>{{$dato->actividades->actividad}}</td> --}}
                                 <th>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</th>
                                 {{-- <td>{{$dato->asistencia}}</td> --}}
-                                {{-- @if ($dato->semaforo === "Verde")
+                                <td>{{$dato->observacion}}</td>
+                                @if ($dato->semaforo === "Verde")
                                     <td style="background: rgba(83, 180, 83, .6)">{{$dato->semaforo}}</td>
                                 @elseif ($dato->semaforo === "Rojo")
                                     <td style="background: rgba(218, 78, 78, .5)">{{$dato->semaforo}}</td>
-                                @endif --}}
-                                <td>{{$dato->observacion}}</td>
+                                @endif
                                 @role('admin')
                                     <td>
                                         <a href="{{url('detalle_actividades/'.$dato->id.'?buscar='.$start)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
