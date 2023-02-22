@@ -51,7 +51,7 @@
                     <p><span>Teléfono del Encargado:</span> {{$datos->telefono_encargado}}</p>
                     <p><span>Centro Educativo:</span> {{$datos->centro_educativos->centro_educativo}}</p>
                     <p><span>Beca:</span> {{$datos->beca}}</p>
-                    <p><span>Semaforo:</span> {{$datos->semaforo}}</p>
+                    {{-- <p><span>Semaforo:</span> {{$datos->semaforo}}</p> --}}
                 </div>
             </div>
         </div>

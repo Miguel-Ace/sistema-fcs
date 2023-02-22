@@ -54,7 +54,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            {{-- <th scope="col">#</th> --}}
+                            <th scope="col">#</th>
                             <th scope="col">Medico</th>
                             <th scope="col">Expediente</th>
                             <th scope="col">Categoria Psicologica</th>
@@ -71,7 +71,7 @@
                     <tbody class="text-center">
                         @foreach ($datos as $dato)
                             <tr>
-                                {{-- <th>{{$dato->id}}</th> --}}
+                                <th>{{$dato->id_expediente}}</th>
                                 <th>{{$dato->medicos->nombre}} {{$dato->medicos->apellido}}</th>
                                 <td>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</td>
                                 <td>{{$dato->categoria_psicologica}}</td>

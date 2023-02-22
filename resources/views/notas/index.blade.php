@@ -48,7 +48,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            {{-- <th scope="col">#</th> --}}
+                            <th scope="col">#</th>
                             <th scope="col">Expediente</th>
                             <th scope="col">promedio</th>
                             <th scope="col">Fecha</th>
@@ -68,7 +68,7 @@
                     <tbody class="text-center">
                         @foreach ($datos as $dato)
                             <tr>
-                                {{-- <th>{{$dato->id}}</th> --}}
+                                <th>{{$dato->id_expediente}}</th>
                                 <td>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</td>
                                 <th>{{$dato->promedio}} %</th>
                                 <td>{{$dato->fecha}}</td>

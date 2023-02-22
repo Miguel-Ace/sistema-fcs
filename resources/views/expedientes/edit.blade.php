@@ -79,7 +79,7 @@
                       <input type="text" class="form-control" value="{{$datos->pp}}" id="pp" name="pp">
                     </div>
 
-                    <label for="semaforo" class="form-label">Semáforo</label>
+                    {{-- <label for="semaforo" class="form-label">Semáforo</label>
                   <select class="form-select mb-3" id="semaforo" name="semaforo">
 
                                 @if ($datos->semaforo === "Verde")
@@ -95,7 +95,7 @@
                                     <option value="Rojo">Rojo</option>
                                     <option value="Amarillo" selected>Amarillo</option>
                                 @endif
-                            </select>
+                            </select> --}}
 
                   </div>{{-- Fin --}}
 

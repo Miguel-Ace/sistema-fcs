@@ -10,8 +10,8 @@
 </head>
 <body>
 
-    <div class="contenedor lateral">
-        <aside class=".aside">
+    <div class="contenedor lateral" id="lateral">
+        <aside class="aside">
             
             <div class="menuToggle"></div>
             <div class="menuToggle2" id="menuToggle2"></div>
@@ -458,6 +458,7 @@
         const toggle2 = document.getElementById('menuToggle2');
         const ul2 = document.getElementById('ul2');
         const ul22 = document.getElementById('ul22');
+        const lateral = document.getElementById('lateral');
 
         toggle2.onclick = () => {
             console.log('hola');
@@ -468,6 +469,7 @@
             }else{
                 ul2.style.display = "unset"
                 ul22.style.display = "unset";
+                // lateral.style.backgroundColor = "#0f2e2e";
             }
         }
 

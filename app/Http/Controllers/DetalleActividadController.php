@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nota;
+use Mockery\Undefined;
 use App\Models\Actividad;
-use App\Models\DetalleActividad;
-use App\Models\EntregasMensuale;
 use App\Models\Expediente;
 use Illuminate\Http\Request;
-use Mockery\Undefined;
+use App\Models\DetalleActividad;
+use App\Models\EntregasMensuale;
+use App\Models\EvaluacionesMedica;
+use App\Models\EvaluacionesPsicologica;
 
 class DetalleActividadController extends Controller
 {
@@ -37,7 +40,21 @@ class DetalleActividadController extends Controller
      */
     public function create(Request $request)
     {
-        // $datos = DetalleActividad::all();
+        $evaluacionMedicas = EvaluacionesMedica::all();
+        $evaluacionPsicologicas = EvaluacionesPsicologica::all();
+        $notas = Nota::all();
+        $detalleActividades = DetalleActividad::all();
+        
+        $semaforo = 'Verde';
+        $semaforo2 = 'Verde';
+        $semaforo3 = 'Verde';
+        $semaforo4 = 'Verde';
+
+        $id = 0;
+        $id2 = 0;
+        $id3 = 0;
+        $id4 = 0;
+        
         $start = $_GET['buscar'];
         $busqueda = $request->buscar;
         $actividades = Actividad::all();
@@ -51,7 +68,7 @@ class DetalleActividadController extends Controller
                                     //     $valor = $dato->id_expediente;
                                     // }
                                     $valor = 0;
-        return view('detalle_actividad.create', compact('expedientes','actividades','datos','start','valor','entregaMensual'));
+        return view('detalle_actividad.create', compact('expedientes','actividades','datos','start','valor','entregaMensual','evaluacionMedicas','evaluacionPsicologicas','notas','detalleActividades','semaforo','semaforo2','semaforo3','semaforo4','id','id2','id3','id4'));
     }
 
     /**

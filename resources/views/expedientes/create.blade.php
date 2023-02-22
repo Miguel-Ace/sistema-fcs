@@ -70,12 +70,12 @@
                       <input type="text" class="form-control" id="pp" name="pp" value="{{old('pp')}}">
                     </div>
 
-                    <label for="semaforo" class="form-label">Semáforo</label>
+                    {{-- <label for="semaforo" class="form-label">Semáforo</label>
                       <select class="form-select mb-3" id="semaforo" name="semaforo">
                           <option value="Verde">Verde</option>
                           <option value="Rojo">Rojo</option>
                           <option value="Amarillo">Amarillo</option>
-                      </select>
+                      </select> --}}
 
                   </div>{{-- Fin --}}
 

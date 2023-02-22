@@ -41,7 +41,6 @@ return new class extends Migration
             $table->bigInteger('id_centro_educativo')->unsigned();
             $table->string('padrino');
             $table->string('escuela');
-            $table->string('semaforo');
             $table->string('beca');
             $table->string('edad');
             $table->timestamps();
