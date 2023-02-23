@@ -52,11 +52,19 @@ h1{
 }
 
 .bordeOscuro{
+    overflow: scroll;
+    table{
+        min-width: 1200px;
+        @media (min-width:1200px) {
+            min-width: unset;
+        }
+    }
+
     box-shadow: -10px 0 40px rgba(0,0,0, .5);
     border-radius: .2rem;
     border-left: 5px solid #0f2e2e;
     &:nth-child(2){
-        overflow: scroll;
+        // overflow: scroll;
         @media (min-width: 1200px) {
             overflow: unset;
         }
@@ -92,7 +100,7 @@ form{
     color: rgba(0,0,0, .7);
 }
 form .enviar{
-    width: 100x !important;
+    width: 100px !important;
     margin: 1rem;
 }
 form .enviar ion-icon{
@@ -109,16 +117,39 @@ form .enviar ion-icon{
     div{
         display: flex;
         .imgcard{
+            display: none;
             flex: 0 0 calc(50%);
+            @media (min-width:768px) {
+                display: unset;
+                flex: 0 0 calc(50%);
+            }
         }
         .formcard{
-            flex: 0 0 calc(50%);
+            flex: 0 0 calc(100%);
             background: white;
-            display: flex;
             // width: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: .5rem;
+            @media (min-width:768px) {
+                flex: 0 0 calc(40%);
+                // border-radius: unset;
+            }
             form{
+                min-width: 100%;
+                padding: 1rem;
+                @media (min-width:1200px) {
+                    padding: 3rem;
+                }
+                .campos{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 1.3rem;
+                    .label{
+                        margin-bottom: .5rem;
+                    }
+                }
             }
         }
     }
@@ -138,6 +169,10 @@ form .enviar ion-icon{
 // vista
 .show{
     display: flex;
+    flex-direction: column;
+    @media (min-width:1200px) {
+        flex-direction: row;
+    }
     justify-content: space-around;
     color: black;
     padding: 10px 0;
@@ -154,7 +189,7 @@ form .enviar ion-icon{
     position: absolute;
     z-index: 1;
     right: 0%;
-    top: 12%;
+    top: 5rem;
 
 
     @media (min-width:1200px) {
@@ -167,6 +202,7 @@ form .enviar ion-icon{
     transition: .5s ease;
     aside{
         background: #0f2e2e;
+        // height: 3rem;
         @media (min-width:1200px) {
             background: unset;
         }
@@ -209,18 +245,18 @@ form .enviar ion-icon{
         }
 
         .menuToggle2{
-            // position: fixed;
+            // position: absolute;
             // top: 0;
             // left: 0;
             // border-bottom: 1px solid white;
             width: 100%;
-            height: 60px;
+            height: 30px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            // padding: 0 23px;
-            margin: 0 auto;
+            padding: 15px 0 0 0;
+            // margin: 0 auto;
             // transform: translatex(75px);
             &::before{
                 content: '';
@@ -311,7 +347,7 @@ form .enviar ion-icon{
                     min-width: 100%;
                     // flex: 0 0 calc(300px);
                     z-index: 100;
-                    bottom: -11.4rem;
+                    bottom: -13.3rem;
                     right: 100%;
                     @media (min-width:1200px) {
                         display: none;
@@ -439,3 +475,110 @@ form .enviar ion-icon{
 .parraf:nth-child(2) {
     display: flex !important;
   }
+
+// Roles
+.tablarol{
+    min-width: 768px;
+}
+.roles{
+    display: flex;
+    justify-content: center;
+    .actualizar{
+        display: flex;
+        margin-right: 1rem;
+        select{
+            width: 10rem;
+            margin-right: 1rem;
+        }
+        button{
+            // padding: .4rem;
+            border-radius: .2rem;
+            border: none;
+            color: white;
+            background: #F8F9F9;
+            ion-icon{
+                font-size: 2rem;
+                color: rgb(32, 144, 84); 
+                &:hover{
+                    color: rgb(31, 120, 62); 
+                }
+            }
+        }
+    }
+
+    .eliminar{
+        button{
+            border-radius: .2rem;
+            border: none;
+            color: white;
+            background: #F8F9F9;
+            ion-icon{
+                font-size: 2rem;
+                color: rgb(214, 72, 72); 
+                &:hover{
+                    color: rgb(203, 56, 56); 
+                }
+            }
+        }
+    }
+}
+
+// Usuarios Registro
+.tablausuarios{
+    overflow: scroll;
+    @media (min-width:1200px) {
+        overflow: unset;
+    }
+}
+.formusuarios{
+    border-left: 5px solid #0f2e2e;
+    border-radius: .3rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    .regresar{
+        // display: flex;
+        width: 6rem;
+        height: 2.3rem;
+        background-color: #ffca2c;
+        margin: 1rem;
+    }
+}
+.tusuarios{
+    td{
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    .accionesUsuarios{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a{
+            border-radius: .2rem;
+            border: none;
+            color: white;
+            background: transparent;
+            margin-right: 1rem;
+            ion-icon{
+                font-size: 2rem;
+                color: rgb(32, 144, 84); 
+                &:hover{
+                    color: rgb(31, 120, 62); 
+                }
+            }
+        }
+
+        form button {
+            border-radius: .2rem;
+            border: none;
+            color: white;
+            background: transparent;
+            ion-icon{
+                font-size: 2rem;
+                color: rgb(214, 72, 72); 
+                &:hover{
+                    color: rgb(203, 56, 56); 
+                }
+            }
+        }
+    }
+}

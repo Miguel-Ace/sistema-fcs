@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ActividadController;
+use App\Models\Expediente;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\BecaController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\BancoController;
 use App\Http\Controllers\BarrioController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\CantoneController;
 use App\Http\Controllers\PadrinoController;
+use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\ProvinciaController;
 use App\Http\Controllers\AsistenciaController;
@@ -21,19 +24,18 @@ use App\Http\Controllers\MetodosPagoController;
 use App\Http\Controllers\TipoEntregaController;
 use App\Http\Controllers\TipoPobrezaController;
 use App\Http\Controllers\BajasPadrinoController;
-use App\Http\Controllers\BecaController;
+use App\Http\Controllers\TipoActividadController;
 use App\Http\Controllers\GradosEscolareController;
+use App\Http\Controllers\TipoAsistenciaController;
 use App\Http\Controllers\CentroEducativoController;
+use App\Http\Controllers\DetalleActividadController;
 use App\Http\Controllers\EntregasMensualeController;
 use App\Http\Controllers\ClasificacionNotaController;
-use App\Http\Controllers\DetalleActividadController;
 use App\Http\Controllers\EvaluacionesMedicaController;
 use App\Http\Controllers\DetalleEntregasMensualeController;
 use App\Http\Controllers\EvaluacionesPsicologicaController;
 use App\Http\Controllers\PdfExpedienteControllerController;
-use App\Http\Controllers\TipoActividadController;
-use App\Http\Controllers\TipoAsistenciaController;
-use App\Models\Expediente;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,13 @@ use App\Models\Expediente;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/assign', [RolController::class, 'index'])->name('role');
+Route::post('/assign', [RolController::class, 'store']);
+Route::put('/assign/{id}', [RolController::class, 'update'])->name('role.update');
+Route::delete('/assign/{id}', [RolController::class, 'destroy'])->name('role.destroy');
+
+Route::resource('/usuarios', UsuarioController::class);
 
 Route::resource('/provincias', ProvinciaController::class);
 Route::resource('/cantones', CantoneController::class);
