@@ -11,8 +11,8 @@ class EvaluacionesPsicologica extends Model
     function expedientes(){
         return $this->belongsTo(Expediente::class, 'id_expediente');
     }
-    function medicos(){
-        return $this->belongsTo(Medico::class, 'id_medico');
+    function clinicas(){
+        return $this->belongsTo(Clinica::class, 'id_clinica');
     }
 
 }

@@ -55,9 +55,10 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Medico</th>
+                            <th scope="col">Clínica</th>
                             <th scope="col">Expediente</th>
                             <th scope="col">Categoria Psicologica</th>
+                            <th scope="col">Comunidad</th>
                             <th scope="col">Nota</th>
                             <th scope="col">Semáforo</th>
                             @role('admin')
@@ -72,9 +73,10 @@
                         @foreach ($datos as $dato)
                             <tr>
                                 <th>{{$dato->id_expediente}}</th>
-                                <th>{{$dato->medicos->nombre}} {{$dato->medicos->apellido}}</th>
+                                <th>{{$dato->clinicas->clinica}}</th>
                                 <td>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</td>
                                 <td>{{$dato->categoria_psicologica}}</td>
+                                <td>{{$dato->id_comunidad}}</td>
                                 <td>{{$dato->nota}}</td>
                                 @if ($dato->semaforo === "Verde")
                                     <td style="background: rgba(83, 180, 83, .6)">{{$dato->semaforo}}</td>

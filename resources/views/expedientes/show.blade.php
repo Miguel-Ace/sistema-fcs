@@ -1,9 +1,9 @@
 @extends('home')
 
 @section('contenido')
-<h1 class="text-left p-2">Expedientes</h1>
+<h1 class="text-left p-2">Expediente</h1>
 <div class="container">
-    
+
      <a href="{{url('/expedientes')}}" class="btn btn-warning mb-3">
         <ion-icon name="arrow-undo-outline"></ion-icon>
           Volver a expedientes
@@ -15,7 +15,7 @@
             <div class="buscador">
             </div>
         </div>
-        
+
         <div class="vistas">
             <div class="show">
                 <div>
@@ -26,25 +26,26 @@
                     <p><span>PP:</span> {{$datos->pp}}</p>
                     <p><span>Sexo:</span> {{$datos->sexo}}</p>
                 </div>
-                
+
                 <div>
+                    <p><span>Edad:</span> {{$edad}}</p>
                     <p><span>Código del niño:</span> {{$datos->codigo_nino}}</p>
                     <p><span>Cédula:</span> {{$datos->cedula}}</p>
                     <p><span>Tipo de Pobreza:</span> {{$datos->tipo_pobrezas->tipo_pobreza}}</p>
                     <p><span>Barrio:</span> {{$datos->barrios->barrio}}</p>
                     <p><span>Fecha de Nacimiento:</span> {{$datos->fecha_nacimiento}}</p>
-                    <p><span>RepresentantePEM:</span> {{$datos->representantePEM}}</p>
+                    {{-- <p><span>RepresentantePEM:</span> {{$datos->representantePEM}}</p> --}}
                 </div>
 
                 <div>
-                    <p><span>Contacto del Representante:</span> {{$datos->contacto_representante}}</p>
+                    <p><span>Contacto PME:</span> {{$datos->contacto_representante}}</p>
                     <p><span>Grado Ecolar:</span> {{$datos->grados_escolares->grado_escolar}}</p>
                     <p><span>Escuela:</span> {{$datos->escuela}}</p>
                     <p><span>Talla de Pantalón:</span> {{$datos->talla_pantalon}}</p>
                     <p><span>Talla de Camisa:</span> {{$datos->talla_camisa}}</p>
                     <p><span>Talla de Zapatos:</span> {{$datos->talla_zapato}}</p>
                 </div>
-                
+
                 <div>
                     <p><span>Activo:</span> {{$datos->activo}}</p>
                     <p><span>Nombre del Encargado:</span> {{$datos->nombre_encargado}}</p>

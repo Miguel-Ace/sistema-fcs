@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('evaluaciones_psicologicas', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->bigInteger('id_medico')->unsigned();
+            $table->bigInteger('id_clinica')->unsigned();
             $table->bigInteger('id_expediente')->unsigned();
+            $table->string('id_comunidad');
             $table->string('categoria_psicologica');
             $table->string('nota')->nullable();
             $table->string('semaforo');
             $table->timestamps();
 
-            $table->foreign('id_medico')->references('id')->on('medicos');
+            $table->foreign('id_clinica')->references('id')->on('clinicas');
             $table->foreign('id_expediente')->references('id')->on('expedientes');
 
         });

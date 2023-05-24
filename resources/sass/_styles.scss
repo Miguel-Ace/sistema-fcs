@@ -208,7 +208,7 @@ form .enviar ion-icon{
         }
         .menuToggle{
             @media (min-width:1200px) {
-    
+
             }
             // position: fixed;
             // top: 0;
@@ -318,7 +318,7 @@ form .enviar ion-icon{
 
                     @media (min-width:1200px) {
                         transform: rotate(180deg);
-                        
+
                     }
                 }
                 &:hover{
@@ -389,7 +389,7 @@ form .enviar ion-icon{
             display: none;
         }
     }
-    
+
     @media (min-width:1200px) {
         &.open .menuToggle::before{
             transform: translateY(0px) rotate(45deg);
@@ -498,9 +498,9 @@ form .enviar ion-icon{
             background: #F8F9F9;
             ion-icon{
                 font-size: 2rem;
-                color: rgb(32, 144, 84); 
+                color: rgb(32, 144, 84);
                 &:hover{
-                    color: rgb(31, 120, 62); 
+                    color: rgb(31, 120, 62);
                 }
             }
         }
@@ -514,9 +514,9 @@ form .enviar ion-icon{
             background: #F8F9F9;
             ion-icon{
                 font-size: 2rem;
-                color: rgb(214, 72, 72); 
+                color: rgb(214, 72, 72);
                 &:hover{
-                    color: rgb(203, 56, 56); 
+                    color: rgb(203, 56, 56);
                 }
             }
         }
@@ -560,9 +560,9 @@ form .enviar ion-icon{
             margin-right: 1rem;
             ion-icon{
                 font-size: 2rem;
-                color: rgb(32, 144, 84); 
+                color: rgb(32, 144, 84);
                 &:hover{
-                    color: rgb(31, 120, 62); 
+                    color: rgb(31, 120, 62);
                 }
             }
         }
@@ -574,10 +574,29 @@ form .enviar ion-icon{
             background: transparent;
             ion-icon{
                 font-size: 2rem;
-                color: rgb(214, 72, 72); 
+                color: rgb(214, 72, 72);
                 &:hover{
-                    color: rgb(203, 56, 56); 
+                    color: rgb(203, 56, 56);
                 }
+            }
+        }
+    }
+}
+
+.showtable{
+    text-align: center;
+    width: 100% !important;
+    position: relative;
+    .titulo-ahijados{
+        position: absolute;
+        top: -2rem;
+    }
+    > table{
+        min-width: 100% !important;
+        margin: 0 auto;
+        tbody{
+            tr{
+                border-bottom: 1px solid;
             }
         }
     }

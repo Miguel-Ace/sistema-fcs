@@ -12,10 +12,10 @@
 
     <div class="contenedor lateral" id="lateral">
         <aside class="aside">
-            
+
             <div class="menuToggle"></div>
             <div class="menuToggle2" id="menuToggle2"></div>
-            
+
             <hr>
 
             <ul id="ul1">
@@ -81,6 +81,18 @@
                         Actividades
                     </a>
                 </li>
+                <li >
+                    <a href="{{url('/especialidades')}}" class="a">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                        Especialidades
+                    </a>
+                </li>
+                <li >
+                    <a href="{{url('/enfermedades')}}" class="a">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                        Enfermedades
+                    </a>
+                </li>
                 {{-- <li >
                     <a href="{{url('/detalle_actividades')}}" class="a">
                         <ion-icon name="person-add-outline"></ion-icon>
@@ -115,7 +127,7 @@
                                 Provincia
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="{{url('/cantones')}}" class="a">
                                 <ion-icon name="map-outline"></ion-icon>
@@ -155,9 +167,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('/medicos')}}" class="a">
+                            <a href="{{url('/clinicas')}}" class="a">
                                 <ion-icon name="man-outline"></ion-icon>
-                                Médico
+                                Clínica
                             </a>
                         </li>
                         <li>
@@ -269,6 +281,18 @@
                         Actividades
                     </a>
                 </li>
+                <li >
+                    <a href="{{url('/especialidades')}}" class="a">
+                        <ion-icon name="sparkles-outline"></ion-icon>
+                        Especialidades
+                    </a>
+                </li>
+                {{-- <li >
+                    <a href="{{url('/enfermedades')}}" class="a">
+                        <ion-icon name="pulse-outline"></ion-icon>
+                        Enfermedades
+                    </a>
+                </li> --}}
                 {{-- <li >
                     <a href="{{url('/detalle_actividades')}}" class="a">
                         <ion-icon name="person-add-outline"></ion-icon>
@@ -303,7 +327,7 @@
                                 Provincia
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="{{url('/cantones')}}" class="a">
                                 <ion-icon name="map-outline"></ion-icon>
@@ -343,9 +367,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('/medicos')}}" class="a">
+                            <a href="{{url('/clinicas')}}" class="a">
                                 <ion-icon name="man-outline"></ion-icon>
-                                Médico
+                                Clínica
                             </a>
                         </li>
                         <li>
@@ -432,11 +456,11 @@
                                     <a class="dropdown-item" href="{{ url('/usuarios') }}">
                                         {{ __('Usuarios') }}
                                     </a>
-                                    
+
                                     <a class="dropdown-item" href="{{ route('role') }}">
                                         {{ __('Roles y Permisos') }}
                                     </a>
-                                    
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -447,7 +471,7 @@
                                     <a class="dropdown-item" href="{{ url('/usuarios') }}">
                                         {{ __('Usuarios') }}
                                     </a>
-                                    
+
                                     <a class="dropdown-item" href="{{ route('role') }}">
                                         {{ __('Roles y Permisos') }}
                                     </a>
@@ -459,8 +483,8 @@
                                         {{ __('Logout') }}
                                     </a>
                                 @endif
-                                
-                                
+
+
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -491,7 +515,7 @@
         toggle2.onclick = () => {
             console.log('hola');
             // ul.classList.add("d-none");
-            
+
             if (ul2.style.display == "unset") {
                 ul2.style.display = ""
             }else{

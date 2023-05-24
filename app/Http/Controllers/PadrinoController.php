@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\BajasPadrino;
 use App\Models\Banco;
+use App\Models\Barrio;
+use App\Models\Cantone;
+use App\Models\Expediente;
 use App\Models\MetodosPago;
 use App\Models\Padrino;
+use App\Models\Provincia;
 use Illuminate\Http\Request;
 
 class PadrinoController extends Controller
@@ -27,7 +31,8 @@ class PadrinoController extends Controller
                         ->paginate(6);
         $Bajapadrinos = BajasPadrino::all();
         $valor = 0;
-        return view('padrino.index', compact('datos','Bajapadrinos','busqueda','valor'));
+        $expedientes = Expediente::all();
+        return view('padrino.index', compact('datos','Bajapadrinos','busqueda','valor','expedientes'));
     }
 
     /**
@@ -39,7 +44,10 @@ class PadrinoController extends Controller
     {
         $metodoPagos = MetodosPago::all();
         $bancos = Banco::all();
-        return view('padrino.create', compact('metodoPagos','bancos'));
+        $provincias = Provincia::all();
+        $cantones = Cantone::all();
+        $barrios = Barrio::all();
+        return view('padrino.create', compact('metodoPagos','bancos','provincias','cantones','barrios'));
     }
 
     /**
@@ -58,7 +66,10 @@ class PadrinoController extends Controller
             'correo' => 'required|email',
             'tipo' => 'required',
             'fecha_inicio' => 'required',
-            'fecha_final' => 'required',
+            'provincia' => 'required',
+            'canton' => 'required',
+            'barrio' => 'required',
+            // 'fecha_final' => 'required',
             'fecha_nacimiento' => 'required',
             'id_metodo_pago' => 'required',
             'id_banco' => 'required',
@@ -76,8 +87,10 @@ class PadrinoController extends Controller
      */
     public function show($id)
     {
+        $obtenerId = $_GET['buscar'];
         $datos = Padrino::find($id);
-        return view('padrino.show', compact('datos'));
+        $expedientes = Expediente::all();
+        return view('padrino.show', compact('obtenerId','datos','expedientes'));
     }
 
     /**
@@ -91,7 +104,10 @@ class PadrinoController extends Controller
         $datos = Padrino::findOrFail($id);
         $metodoPagos = MetodosPago::all();
         $bancos = Banco::all();
-        return view('padrino.edit', compact('datos','metodoPagos','bancos'));
+        $provincias = Provincia::all();
+        $cantones = Cantone::all();
+        $barrios = Barrio::all();
+        return view('padrino.edit', compact('datos','metodoPagos','bancos','provincias','cantones','barrios'));
     }
 
     /**

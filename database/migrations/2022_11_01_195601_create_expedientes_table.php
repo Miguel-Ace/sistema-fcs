@@ -29,7 +29,7 @@ return new class extends Migration
             $table->bigInteger('id_tipo_pobreza')->unsigned();
             $table->bigInteger('id_barrio')->unsigned();
             $table->string('fecha_nacimiento');
-            $table->string('representantePEM');
+            // $table->string('representantePEM');
             $table->string('contacto_representante');
             $table->bigInteger('id_grado_escolar')->unsigned();
             $table->string('talla_pantalon');
@@ -39,10 +39,11 @@ return new class extends Migration
             $table->string('nombre_encargado');
             $table->string('telefono_encargado');
             $table->bigInteger('id_centro_educativo')->unsigned();
-            $table->string('padrino');
+            $table->string('padrino')->nullable();
             $table->string('escuela');
-            $table->string('beca');
-            $table->string('edad');
+            $table->string('beca')->nullable();
+            // $table->string('id_enfermedad');
+            // $table->string('edad');
             $table->timestamps();
 
 
@@ -52,6 +53,7 @@ return new class extends Migration
             $table->foreign('id_barrio')->references('id')->on('barrios');
             $table->foreign('id_grado_escolar')->references('id')->on('grados_escolares');
             $table->foreign('id_centro_educativo')->references('id')->on('centro_educativos');
+            // $table->foreign('id_enfermedad')->references('id')->on('enfermedads');
         });
     }
 

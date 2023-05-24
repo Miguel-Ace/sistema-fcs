@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medico;
+use App\Models\Clinica;
 use Illuminate\Http\Request;
 
-class MedicoController extends Controller
+class ClinicaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,10 +15,9 @@ class MedicoController extends Controller
     public function index(Request $request)
     {
         $busqueda = $request->buscar;
-        $datos = Medico::where('nombre','like','%'.$busqueda.'%')
-                            ->orWhere('apellido','like','%'.$busqueda.'%')
-                            ->paginate(6);
-        return view('medicos.index', compact('datos','busqueda'));
+        $datos = Clinica::where('clinica','like','%'.$busqueda.'%')
+        ->paginate(6);
+        return view('clinica.index', compact('datos','busqueda'));
     }
 
     /**
@@ -32,7 +27,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('medicos.create');
+        return view('clinica.create');
     }
 
     /**
@@ -43,65 +38,61 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required|min:8|max:8',
-            'email' => 'required|email',
+        $request->validate([
+            'clinica'=>'required',
         ]);
+
         $datos = $request->except('_token');
-        Medico::insert($datos);
-        return redirect('/medicos');
+        Clinica::insert($datos);
+
+        return redirect('/clinicas');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Medico  $medico
+     * @param  \App\Models\Clinica  $clinica
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $datos = Medico::find($id);
-        return view('medicos.show', compact('datos'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Medico  $medico
+     * @param  \App\Models\Clinica  $clinica
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $datos = Medico::findOrFail($id);
-        return view('medicos.edit', compact('datos'));
+        $datos = Clinica::find($id);
+        return view('clinica.edit', compact('datos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Medico  $medico
+     * @param  \App\Models\Clinica  $clinica
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $datos = $request->except('_token','_method');
-        Medico::where('id','=',$id)->update($datos);
-        return redirect('/medicos');
+        Clinica::where('id','=',$id)->update($datos);
+        return redirect('/clinicas');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Medico  $medico
+     * @param  \App\Models\Clinica  $clinica
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Medico::destroy($id);
-        return redirect('/medicos');
+        //
     }
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('fecha_actividad');
             $table->bigInteger('id_tipo_asistencia')->unsigned();
             $table->string('patrocinador');
+            $table->string('rubro');
             $table->string('observacion')->nullable();
             $table->timestamps();
 

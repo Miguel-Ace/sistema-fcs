@@ -26,21 +26,28 @@
           @endif
                 <form action="{{url('/actividades')}}" class="row" method="post">
                     @csrf
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="actividad" class="form-label">Actividad</label>
                           <input type="text" class="form-control" id="actividad" name="actividad" style="@error('actividad') border: 2px solid red @enderror" value="{{old('actividad')}}">
                         </div>
                     </div>
 
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
+                        <div class="mb-3">
+                          <label for="rubro" class="form-label">Rubro</label>
+                          <input type="text" class="form-control" id="rubro" name="rubro" style="@error('rubro') border: 2px solid red @enderror" value="{{old('rubro')}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_creacion" class="form-label">Fecha Creacion</label>
                           <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" style="@error('fecha_creacion') border: 2px solid red @enderror" value="{{old('fecha_creacion')}}">
                         </div>
                     </div>
 
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_actividad" class="form-label">Fecha Actividad</label>
                           <input type="date" class="form-control" id="fecha_actividad" name="fecha_actividad" style="@error('fecha_actividad') border: 2px solid red @enderror" value="{{old('fecha_actividad')}}">

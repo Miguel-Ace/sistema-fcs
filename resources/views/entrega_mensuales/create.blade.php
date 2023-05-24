@@ -55,7 +55,7 @@
                         <label for="id_padrino" class="form-label">Padrino</label>
                         <select class="form-select mb-3" id="id_padrino" name="id_padrino">
                             @foreach ($padrinos as $padrino)
-                                @foreach ($Bajapadrinos as $Bajapadrino)
+                                {{-- @foreach ($Bajapadrinos as $Bajapadrino)
                                     @if ($Bajapadrino->id_padrino == $padrino->id)
                                         {{$valor = $Bajapadrino->id_padrino}}
                                     @endif
@@ -64,7 +64,8 @@
 
                                 @else
                                     <option value="{{$padrino->id}}" class="d-none">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
-                                @endif
+                                @endif --}}
+                                <option value="{{$padrino->id}}">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
                             @endforeach
                         </select>
 
@@ -131,7 +132,7 @@
     <script>
         const expediente = document.getElementById('id_expediente');
         const padrino = document.getElementById('id_padrino');
-        
+
         expediente.onclick = (e) => {
             let tablaExpedientes = JSON.parse('{!! json_encode($expedientes) !!}');
             let valor = expediente.value;

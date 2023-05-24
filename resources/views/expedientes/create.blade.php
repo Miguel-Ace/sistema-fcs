@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('contenido')
-    <h1 class="text-left p-2">Expedientes</h1>
+    <h1 class="text-left p-2">Expediente</h1>
     <div class="container">
 
         <a href="{{url('/expedientes')}}" class="btn btn-warning mb-3">
@@ -70,13 +70,6 @@
                       <input type="text" class="form-control" id="pp" name="pp" value="{{old('pp')}}">
                     </div>
 
-                    {{-- <label for="semaforo" class="form-label">Semáforo</label>
-                      <select class="form-select mb-3" id="semaforo" name="semaforo">
-                          <option value="Verde">Verde</option>
-                          <option value="Rojo">Rojo</option>
-                          <option value="Amarillo">Amarillo</option>
-                      </select> --}}
-
                   </div>{{-- Fin --}}
 
                     <div class="col-md-3">{{-- Inicio --}}
@@ -86,10 +79,15 @@
                         <input type="text" class="form-control" id="nombre2" name="nombre2" value="{{old('nombre2')}}">
                       </div>
 
-                      <div class="mb-3">
+                      <label for="activo" class="form-label">Activo</label>
+                        <select class="form-select mb-3" id="activo" name="activo">
+                            <option value="Si" selected>Si</option>
+                            <option value="No">No</option>
+                        </select>
+                      {{-- <div class="mb-3">
                         <label for="edad" class="form-label">Edad</label>
                         <input type="number" class="form-control" id="edad" min="0" name="edad" value="{{old('edad')}}">
-                      </div>
+                      </div> --}}
 
                       <label for="padrino" class="form-label">Padrino</label>
                       <select class="form-select mb-3" id="padrino" name="padrino">
@@ -98,11 +96,11 @@
                               <option value="{{$padrino->id}}">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
                           @endforeach
                       </select>
-                      
-                      <div class="mb-3">
+
+                      {{-- <div class="mb-3">
                         <label for="representantePEM" class="form-label">RepresentantePEM</label>
                         <input type="text" class="form-control" id="representantePEM" name="representantePEM" value="{{old('representantePEM')}}">
-                      </div>
+                      </div> --}}
 
                     <label for="id_estado" class="form-label">Estado</label>
                     <select class="form-select mb-3" id="id_estado" name="id_estado">
@@ -142,7 +140,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="contacto_representante" class="form-label">Contacto Representante</label>
+                      <label for="contacto_representante" class="form-label">Contacto PME</label>
                       <input type="number" min="0" class="form-control" id="contacto_representante" name="contacto_representante" value="{{old('contacto_representante')}}">
                     </div>
 
@@ -167,11 +165,6 @@
                         <option value="2XL">2XL</option>
                     </select>
 
-                    <label for="activo" class="form-label">Activo</label>
-                    <select class="form-select mb-3" id="activo" name="activo">
-                        <option value="Si" selected>Si</option>
-                        <option value="No">No</option>
-                    </select>
                     </div>{{-- Fin --}}
 
                     <div class="col-md-3">{{-- Inicio --}}
@@ -228,4 +221,3 @@
 
     </div>
 @endsection
-

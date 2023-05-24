@@ -22,170 +22,62 @@
             <form action="{{url('evaluaciones_medicas/'.$datos->id)}}" class="row" method="post">
               @csrf
               {{method_field('PATCH')}}
-              <div class="col-md-3">{{-- Inicio --}}
+              <div class="col-md-4">{{-- Inicio --}}
 
-                <label for="id_expediente" class="form-label">Expediente</label>
-                <select class="form-select mb-3" id="id_expediente" name="id_expediente">
-                    <option value="" selected>Seleccione un expediente</option>
-                    @foreach ($expedientes as $expediente)
-                        @if ($expediente->id === $datos->expedientes->id)
-                            <option value="{{$expediente->id}}" selected>{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
-                        @else
-                            <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
-                        @endif
-                    @endforeach
-                </select>
-
-                      <label for="cancer" class="form-label">Cancer</label>
-                        <select class="form-select mb-3" id="cancer" name="cancer">
-                            @if ($datos->cancer === "Si")
-                                <option value="Si">Si</option>
+                    <label for="id_expediente" class="form-label">Expediente PME</label>
+                    <select class="form-select mb-3" id="id_expediente" name="id_expediente">
+                        <option value="" selected>Seleccione un expediente</option>
+                        @foreach ($expedientes as $expediente)
+                            @if ($expediente->id === $datos->expedientes->id)
+                                <option value="{{$expediente->id}}" selected>{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                             @else
-                                <option value="No">No</option>
-                            @endif
-                        </select>
-
-                        <label for="asma" class="form-label">Asma</label>
-                        <select class="form-select mb-3" id="asma" name="asma">
-                            @if ($datos->asma === "Si")
-                            <option value="Si">Si</option>
-                            @else
-                            <option value="No">No</option>
-                            @endif
-                        </select>
-
-                        <label for="ostogenesis" class="form-label">Ostogenesis</label>
-                        <select class="form-select mb-3" id="ostogenesis" name="ostogenesis">
-
-                            @if ($datos->ostogenesis === "Si")
-                                <option value="Si">Si</option>
-                            @else
-                                <option value="No">No</option>
-                            @endif
-                        </select>
-
-                    </div>{{-- Fin --}}
-
-                    <div class="col-md-3">{{-- Inicio --}}
-                    <label for="id_medico" class="form-label">Medico</label>
-                    <select class="form-select mb-3" id="id_medico" name="id_medico">
-                        <option value="" selected>Seleccione El Medico</option>
-                        @foreach ($medicos as $medico)
-                            @if ($medico->id === $datos->medicos->id)
-                                <option value="{{$medico->id}}" selected>{{$medico->nombre}} {{$medico->apellido}}</option>
-                            @else
-                                <option value="{{$medico->id}}">{{$medico->nombre}} {{$medico->apellido}}</option>
+                                <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                             @endif
                         @endforeach
                     </select>
 
-                        <label for="epilepcia" class="form-label">Epilepsia</label>
-                        <select class="form-select mb-3" id="epilepcia" name="epilepcia">
-                            @if ($datos->epilepcia === "Si")
-                                <option value="Si">Si</option>
+                    <div class="mb-3">
+                        <label for="peso" class="form-label">Peso</label>
+                        <input type="number" class="form-control" id="peso" name="peso" min="0" step=".1" value="{{$datos->peso}}">
+                      </div>
+                </div>{{-- Fin --}}
+
+                <div class="col-md-4">{{-- Inicio --}}
+                    <label for="id_clinica" class="form-label">Clínica</label>
+                    <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                        <option value="" selected>Seleccione La Clínica</option>
+                        @foreach ($clinicas as $clinica)
+                            @if ($clinica->id === $datos->clinicas->id)
+                                <option value="{{$clinica->id}}" selected>{{$clinica->clinica}}</option>
                             @else
-                                <option value="No">No</option>
+                                <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
                             @endif
-                        </select>
+                        @endforeach
+                    </select>
 
-                        <label for="enfermedad_corazon" class="form-label">Enfermedades Cardiacas</label>
-                        <select class="form-select mb-3" id="enfermedad_corazon" name="enfermedad_corazon">
-
-                            @if ($datos->enfermedad_corazon === "Si")
-                                <option value="Si">Si</option>
-                            @else
-                                <option value="No">No</option>
-                            @endif
-                        </select>
-
-                        <label for="sindrome_piernas_inquietas" class="form-label">Sindrome Piernas Inquietas</label>
-                        <select class="form-select mb-3" id="sindrome_piernas_inquietas" name="sindrome_piernas_inquietas">
-
-                            @if ($datos->sindrome_piernas_inquietas === "Si")
-                                <option value="Si">Si</option>
-                            @else
-                                <option value="No">No</option>
-                            @endif
-                        </select>
+                    <div class="mb-3">
+                        <label for="talla" class="form-label">Talla</label>
+                        <input type="number" class="form-control" id="talla" min="0" step=".1" name="talla" value="{{$datos->talla}}">
+                    </div>
                 </div>{{-- Fin --}}
 
 
-                  <div class="col-md-3">{{-- Inicio --}}
-
+                <div class="col-md-4">{{-- Inicio --}}
                     <div class="mb-3">
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" class="form-control" value="{{$datos->fecha}}" id="fecha" name="fecha">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="signos" class="form-label">Signos</label>
+                        <input type="number" class="form-control" id="signos" min="0" step=".1" name="signos" value="{{$datos->signos}}">
+                    </div>
+                </div>{{-- Fin --}}
 
-                    <label for="frenillos" class="form-label">Frenillos</label>
-                        <select class="form-select mb-3" id="frenillos" name="frenillos">
-
-                            @if ($datos->frenillos === "Si")
-                                <option value="Si">Si</option>
-                            @else
-                                <option value="No">No</option>
-                            @endif
-                    </select>
-
-                    <label for="anteojos" class="form-label">Anteojos</label>
-                        <select class="form-select mb-3" id="anteojos" name="anteojos">
-
-                            @if ($datos->anteojos === "Si")
-                                <option value="Si">Si</option>
-                            @else
-                                <option value="No">No</option>
-                            @endif
-                        </select>
-
-
-                  <label for="otras_enfermedades" class="form-label">Otras Enfermedades</label>
-                  <select class="form-select mb-3" id="otras_enfermedades" name="otras_enfermedades">
-
-                      @if ($datos->otras_enfermedades === "Si")
-                          <option value="Si">Si</option>
-                      @else
-                          <option value="No">No</option>
-                      @endif
-                  </select>
-                    </div>{{-- Fin --}}
-
-                <div class="col-md-3">{{-- Inicio --}}
-
-                    <label for="diabetes" class="form-label">Diabetes</label>
-                    <select class="form-select mb-3" id="diabetes" name="diabetes">
-
-                        @if ($datos->diabetes === "Si")
-                        <option value="Si">Si</option>
-                        @else
-                        <option value="No">No</option>
-                        @endif
-                    </select>
-
-
-                  <label for="semaforo" class="form-label">Semáforo</label>
-                  <select class="form-select mb-3" id="semaforo" name="semaforo">
-
-                                @if ($datos->semaforo === "Verde")
-                                    <option value="Verde" selected>Verde</option>
-                                    <option value="Rojo">Rojo</option>
-                                    <option value="Amarillo">Amarillo</option>
-                                @elseif ($datos->semaforo === "Rojo")
-                                    <option value="Verde">Verde</option>
-                                    <option value="Rojo" selected>Rojo</option>
-                                    <option value="Amarillo">Amarillo</option>
-                                @else
-                                    <option value="Verde">Verde</option>
-                                    <option value="Rojo">Rojo</option>
-                                    <option value="Amarillo" selected>Amarillo</option>
-                                @endif
-                            </select>
-
-                        </div>{{-- Fin --}}
-                        <div class="mb-3">
-                            <label for="notas" class="form-label">Notas</label>
-                            <input type="text" class="form-control" id="notas" name="notas" value="{{$datos->notas}}">
-                          </div>
+                <div class="mb-3">
+                    <label for="notas" class="form-label">Notas</label>
+                    <input type="text" class="form-control" id="notas" name="notas" value="{{$datos->notas}}">
+                </div>
 
 
                   <button type="submit" class="btn btn-primary enviar">

@@ -21,21 +21,28 @@
                 <form action="{{url('actividades/'.$datos->id)}}" class="row" method="post">
                     @csrf
                     {{method_field('PATCH')}}
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="actividad" class="form-label">Actividad</label>
                           <input type="text" class="form-control" id="actividad" name="actividad" value="{{$datos->actividad}}">
                         </div>
                     </div>
 
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
+                      <div class="mb-3">
+                        <label for="rubro" class="form-label">Rubro</label>
+                        <input type="text" class="form-control" id="rubro" name="rubro" value="{{$datos->rubro}}">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_creacion" class="form-label">fecha_creacion</label>
                           <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" value="{{$datos->fecha_creacion}}">
                         </div>
                     </div>
 
-                    <div class="col-md-4"> {{-- Inicio --}}
+                    <div class="col-md-3"> {{-- Inicio --}}
                         <div class="mb-3">
                           <label for="fecha_actividad" class="form-label">fecha_actividad</label>
                           <input type="date" class="form-control" id="fecha_actividad" name="fecha_actividad" value="{{$datos->fecha_actividad}}">

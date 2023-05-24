@@ -1,5 +1,8 @@
 @extends('home')
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @section('contenido')
     <h1 class="text-left p-2">Padrinos</h1>
     <div class="container">
@@ -76,7 +79,7 @@
 
                                         @role('admin')
                                         <td>
-                                            <a href="{{url('padrinos/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            <a href="{{url('padrinos/'.$dato->id.'?buscar='.$dato->id)}}" class="btn btn-primary"><ion-icon name="person-outline"></ion-icon></a>
                                             |
                                             <a href="{{url('padrinos/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
                                             {{-- |
@@ -103,7 +106,7 @@
 
                                         @role('admin')
                                         <td>
-                                            <a href="{{url('padrinos/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            <a href="{{url('padrinos/'.$dato->id.'?buscar='.$dato->id)}}" class="btn btn-primary"><ion-icon name="person-outline"></ion-icon></a>
                                             |
                                             <a href="{{url('padrinos/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
                                             {{-- |
@@ -115,11 +118,44 @@
                                         </td>
                                         @endrole
                                     @endif
-
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+
+                <!-- Modal -->
+                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ahijados</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{$dato->id}}
+                            @foreach ($expedientes as $expediente)
+                                @if ($expediente->padrino == $dato->id)
+                                    @php
+                                        $fecha_nacimiento = $expediente->fecha_nacimiento;
+                                        $fecha_nacimiento = \Carbon\Carbon::parse($fecha_nacimiento);
+                                        $fecha_actual = \Carbon\Carbon::now();
+                                        $edad = $fecha_nacimiento->diffInYears($fecha_actual);
+                                    @endphp
+                                    <p>Nombre: {{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</p>
+                                    <p>Edad: {{$edad}}</p>
+                                    <p style="border-bottom: 1px solid">Comunidad: {{$expediente->id_comunidad}}</p>
+                                @endif
+                            @endforeach
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div> --}}
+
                 <div class="d-flex justify-content-center">
                     {!! $datos->links() !!}
                 </div>
@@ -127,3 +163,31 @@
         </div>
     </div>
 @endsection
+
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault(); // Evitar el envío normal del formulario
+
+            var form = $(this);
+            var url = form.attr('action');
+            var data = form.serialize(); // Serializar los datos del formulario
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    // Lógica de éxito
+                },
+                error: function(xhr) {
+                    // Lógica de error
+                }
+            });
+        });
+    });
+</script> --}}

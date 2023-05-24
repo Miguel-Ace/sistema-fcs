@@ -35,15 +35,18 @@
                           <input type="text" class="form-control" id="nombre" name="nombre" value="{{old('nombre')}}">
                       </div>
 
-                      <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" value="{{old('correo')}}">
-                    </div>
+                      <label for="canton" class="form-label">Cantón</label>
+                        <select class="form-select mb-3" id="canton" name="canton">
+                            <option value="">Seleccione Cantón</option>
+                            @foreach ($cantones as $canton)
+                                <option value="{{$canton->canton}}">{{$canton->canton}}</option>
+                            @endforeach
+                        </select> 
 
-                    <div class="mb-3">
-                        <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
-                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
-                    </div>
+                        <div class="mb-3">
+                            <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
+                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
+                        </div>
                   </div>
 
                   <div class="col-md-3">
@@ -52,17 +55,19 @@
                           <input type="text" class="form-control" id="apellido" name="apellido" value="{{old('apellido')}}">
                       </div>
 
-                      <div class="mb-3">
-                        <label for="tipo" class="form-label">Tipo</label>
-                        <input type="text" class="form-control" id="tipo" name="tipo" value="{{old('tipo')}}">
-                    </div>
+                      <label for="barrio" class="form-label">Barrio</label>
+                        <select class="form-select mb-3" id="barrio" name="barrio">
+                            <option value="">Seleccione Barrio</option>
+                            @foreach ($barrios as $barrio)
+                                <option value="{{$barrio->barrio}}">{{$barrio->barrio}}</option>
+                            @endforeach
+                        </select>
 
-                    <label for="id_metodo_pago" class="form-label">Método Pago</label>
-                      <select class="form-select mb-3" id="id_metodo_pago" name="id_metodo_pago">
-                          @foreach ($metodoPagos as $metodoPago)
-                              <option value="{{$metodoPago->id}}">{{$metodoPago->metodo_pago}}</option>
-                          @endforeach
-                      </select>
+                        <div class="mb-3">
+                            <label for="fecha_inicio" class="form-label">Fecha Inicial</label>
+                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{old('fecha_inicio')}}">
+                        </div>
+                    
                 </div>
 
                 <div class="col-md-3">
@@ -71,7 +76,25 @@
                         <input type="number" min="0" class="form-control" id="telefono" name="telefono" value="{{old('telefono')}}">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" name="correo" value="{{old('correo')}}">
+                      </div>
 
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="tipo" name="tipo" value="{{old('tipo')}}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="provincia" class="form-label">Provincia</label>
+                        <select class="form-select mb-3" id="provincia" name="provincia">
+                            <option value="">Seleccione Provincia</option>
+                            @foreach ($provincias as $provincia)
+                                <option value="{{$provincia->provincia}}">{{$provincia->provincia}}</option>
+                            @endforeach
+                        </select>
 
                     <label for="id_banco" class="form-label">Banco</label>
                       <select class="form-select mb-3" id="id_banco" name="id_banco">
@@ -79,21 +102,21 @@
                               <option value="{{$banco->id}}">{{$banco->banco}}</option>
                           @endforeach
                       </select>
-                </div>
 
-                <div class="col-md-3">
-
-                    <div class="mb-3">
-                        <label for="fecha_inicio" class="form-label">Fecha Inicial</label>
-                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{old('fecha_inicio')}}">
-                    </div>
-
-                    <div class="mb-3">
+                      <label for="id_metodo_pago" class="form-label">Método Pago</label>
+                      <select class="form-select mb-3" id="id_metodo_pago" name="id_metodo_pago">
+                          @foreach ($metodoPagos as $metodoPago)
+                              <option value="{{$metodoPago->id}}">{{$metodoPago->metodo_pago}}</option>
+                          @endforeach
+                      </select>
+                      
+                    {{-- <div class="mb-3">
                         <label for="fecha_final" class="form-label">Fecha Final</label>
                         <input type="date" class="form-control" id="fecha_final" name="fecha_final" value="{{old('fecha_final')}}">
-                    </div>
+                    </div> --}}
 
                 </div>
+                
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" value="{{old('direccion')}}">

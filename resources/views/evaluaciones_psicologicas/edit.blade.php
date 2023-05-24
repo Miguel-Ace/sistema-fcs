@@ -22,22 +22,22 @@
                 @csrf
                 {{method_field('PATCH')}}
 
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-4">{{-- Inicio --}}
 
-                    <label for="id_medico" class="form-label">Medico</label>
-                    <select class="form-select mb-3" id="id_medico" name="id_medico">
-                        @foreach ($medicos as $medico)
-                            @if ($medico->id === $datos->medicos->id)
-                                <option value="{{$medico->id}}" selected>{{$medico->nombre}} {{$medico->apellido}}</option>
+                    <label for="id_clinica" class="form-label">Clínica</label>
+                    <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                        @foreach ($clinicas as $clinica)
+                            @if ($clinica->id === $datos->clinicas->id)
+                                <option value="{{$clinica->id}}" selected>{{$clinica->clinica}}</option>
                             @else
-                                <option value="{{$medico->id}}">{{$medico->nombre}} {{$medico->apellido}}</option>
+                                <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
                             @endif
                         @endforeach
                     </select>
 
                 </div>
 
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-4">{{-- Inicio --}}
                     <label for="id_expediente" class="form-label">Expediente</label>
                     <select class="form-select mb-3" id="id_expediente" name="id_expediente">
                         @foreach ($expedientes as $expediente)
@@ -49,17 +49,29 @@
                         @endforeach
                     </select>
                 </div>
-                    
-                <div class="col-md-3">{{-- Inicio --}}
+
+                <div class="col-md-4">{{-- Inicio --}}
                     <div class="mb-3">
                         <label for="categoria_psicologica" class="form-label">Categoria Psicológica</label>
                         <input type="text" class="form-control" value="{{$datos->categoria_psicologica}}" id="categoria_psicologica" name="categoria_psicologica">
                     </div>
                 </div>
-                
 
-                <div class="col-md-3">{{-- Inicio --}}
-                
+                <div class="col-md-6">{{-- Inicio --}}
+                    <label for="id_comunidad" class="form-label">Comunidad</label>
+                    <select class="form-select mb-3" id="id_comunidad" name="id_comunidad">
+                        @foreach ($comunidades as $comunidad)
+                            @if ($comunidad->comunidad === $datos->id_comunidad)
+                                <option value="{{$comunidad->comunidad}}" selected>{{$comunidad->comunidad}}</option>
+                            @else
+                                <option value="{{$comunidad->comunidad}}">{{$comunidad->comunidad}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-6">{{-- Inicio --}}
+
                     <label for="semaforo" class="form-label">Semaforo</label>
                     <select class="form-select mb-3" id="semaforo" name="semaforo">
                         @if ($datos->semaforo === "Verde")
@@ -83,14 +95,14 @@
                     <label for="nota" class="form-label">Nota</label>
                     <input type="text" class="form-control" value="{{$datos->nota}}" id="nota" name="nota">
                 </div>
-  
+
                 <button type="submit" class="btn btn-primary enviar">
                     <ion-icon name="save-outline"></ion-icon>
                     Guardar
                 </button>
             </form>
-            
-            
+
+
             </div>
         </div>
         @endrole
@@ -102,50 +114,62 @@
                 <div class="buscador">
                 </div>
             </div>
-    
+
             <div class="col-md-12 fs-6">
                 <form action="{{url('evaluaciones_psicologicas/'.$datos->id)}}" class="row" method="post">
                     @csrf
                     {{method_field('PATCH')}}
-    
-                    <div class="col-md-3">{{-- Inicio --}}
-    
-                        <label for="id_medico" class="form-label">Medico</label>
-                        <select class="form-select mb-3" id="id_medico" name="id_medico">
-                            @foreach ($medicos as $medico)
-                                @if ($medico->id === $datos->medicos->id)
-                                    <option value="{{$medico->id}}" selected>{{$medico->nombre}}</option>
+
+                    <div class="col-md-4">{{-- Inicio --}}
+
+                        <label for="id_clinica" class="form-label">Clínica</label>
+                        <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                            @foreach ($clinicas as $clinica)
+                                @if ($clinica->id === $datos->clinicas->id)
+                                    <option value="{{$clinica->id}}" selected>{{$clinica->clinica}}</option>
                                 @else
-                                    <option value="{{$medico->id}}">{{$medico->nombre}}</option>
+                                    <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
                                 @endif
                             @endforeach
                         </select>
-    
+
                     </div>
-    
-                    <div class="col-md-3">{{-- Inicio --}}
+
+                    <div class="col-md-4">{{-- Inicio --}}
                         <label for="id_expediente" class="form-label">Expediente</label>
                         <select class="form-select mb-3" id="id_expediente" name="id_expediente">
                             @foreach ($expedientes as $expediente)
                                 @if ($expediente->id === $datos->expedientes->id)
-                                    <option value="{{$expediente->id}}" selected>{{$expediente->id}}</option>
+                                    <option value="{{$expediente->id}}" selected>{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                                 @else
-                                    <option value="{{$expediente->id}}">{{$expediente->id}}</option>
+                                    <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                                 @endif
                             @endforeach
                         </select>
                     </div>
-                        
-                    <div class="col-md-3">{{-- Inicio --}}
+
+                    <div class="col-md-4">{{-- Inicio --}}
                         <div class="mb-3">
                             <label for="categoria_psicologica" class="form-label">Categoria Psicológica</label>
                             <input type="text" class="form-control" value="{{$datos->categoria_psicologica}}" id="categoria_psicologica" name="categoria_psicologica">
                         </div>
                     </div>
-                    
-    
-                    <div class="col-md-3">{{-- Inicio --}}
-                    
+
+                    <div class="col-md-6">{{-- Inicio --}}
+                        <label for="id_comunidad" class="form-label">Comunidad</label>
+                        <select class="form-select mb-3" id="id_comunidad" name="id_comunidad">
+                            @foreach ($comunidades as $comunidad)
+                                @if ($comunidad->comunidad === $datos->id_comunidad)
+                                    <option value="{{$comunidad->comunidad}}" selected>{{$comunidad->comunidad}}</option>
+                                @else
+                                    <option value="{{$comunidad->comunidad}}">{{$comunidad->comunidad}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">{{-- Inicio --}}
+
                         <label for="semaforo" class="form-label">Semaforo</label>
                         <select class="form-select mb-3" id="semaforo" name="semaforo">
                             @if ($datos->semaforo === "Verde")
@@ -162,21 +186,21 @@
                                 <option value="Amarillo" selected>Amarillo</option>
                             @endif
                         </select>
-    
+
                     </div>
-    
+
                     <div class="mb-3">
                         <label for="nota" class="form-label">Nota</label>
                         <input type="text" class="form-control" value="{{$datos->nota}}" id="nota" name="nota">
                     </div>
-      
+
                     <button type="submit" class="btn btn-primary enviar">
                         <ion-icon name="save-outline"></ion-icon>
                         Guardar
                     </button>
                 </form>
-                
-                
+
+
                 </div>
             </div>
         @endrole

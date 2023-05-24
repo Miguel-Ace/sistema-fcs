@@ -20,7 +20,7 @@
             <ion-icon name="create-outline"></ion-icon>
             Nuevo Detalle de Entregas Mensuales
         </a>
-        
+
         <a href="{{url('/entregas_mensuales')}}" class="btn btn-info mb-3">
             <ion-icon name="arrow-back-outline"></ion-icon>
             Volver a Entregas Mensuales
@@ -89,11 +89,11 @@
                                     {{-- <th>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</th> --}}
 
                                     <th>{{$dato->tipo_entregas->tipo_entrega}}</th>
-                                    
+
                                     @role('admin')
                                         <td>
-                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
-                                            |
+                                            {{-- <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            | --}}
                                             <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit?buscar='.$start)}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
                                             |
                                             <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">
@@ -105,8 +105,8 @@
                                     @endrole
                                     @role('editor')
                                         <td>
-                                            <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
-                                            |
+                                            {{-- <a href="{{url('detalle_entregas_mensuales/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                            | --}}
                                             <a href="{{url('detalle_entregas_mensuales/'.$dato->id.'/edit?buscar='.$start)}}" class="btn btn-success"><ion-icon name="pencil-outline"></ion-icon></a>
                                             |
                                             <form action="{{'detalle_entregas_mensuales/'.$dato->id}}" method="post" class="d-inline">

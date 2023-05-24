@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinica;
+use App\Models\Especialidad;
 use App\Models\EvaluacionesMedica;
 use App\Models\Expediente;
-use App\Models\Medico;
 use Illuminate\Http\Request;
 
 class EvaluacionesMedicaController extends Controller
@@ -41,8 +42,8 @@ class EvaluacionesMedicaController extends Controller
     public function create()
     {
         $expedientes = Expediente::all();
-        $medicos = Medico::all();
-        return view('evaluaciones_medicas.create', compact('expedientes','medicos'));
+        $clinicas = Clinica::all();
+        return view('evaluaciones_medicas.create', compact('expedientes','clinicas'));
     }
 
     /**
@@ -55,19 +56,13 @@ class EvaluacionesMedicaController extends Controller
     {
         request()->validate([
             'id_expediente' => 'required',
-            'id_medico' => 'required',
+            'id_clinica' => 'required',
             'fecha' => 'required',
-            'cancer' => 'required',
-            'asma' => 'required',
-            'diabetes' => 'required',
-            'epilepcia' => 'required',
-            'enfermedad_corazon' => 'required',
-            'ostogenesis' => 'required',
-            'sindrome_piernas_inquietas' => 'required',
-            'otras_enfermedades' => 'required',
-            'frenillos' => 'required',
-            'anteojos' => 'required',
-            'semaforo' => 'required',
+            'peso' => 'required',
+            'talla' => 'required',
+            'signos' => 'required',
+            'notas' => 'nullable',
+            // 'semaforo' => 'required',
         ]);
         $datos = $request->except('_token');
         EvaluacionesMedica::insert($datos);
@@ -96,8 +91,9 @@ class EvaluacionesMedicaController extends Controller
     {
         $datos = EvaluacionesMedica::findOrFail($id);
         $expedientes = Expediente::all();
-        $medicos = Medico::all();
-        return view('evaluaciones_medicas.edit', compact('datos','expedientes','medicos'));
+        $clinicas = Clinica::all();
+        $especialidades = Especialidad::all();
+        return view('evaluaciones_medicas.edit', compact('datos','expedientes','clinicas','especialidades'));
     }
 
     /**

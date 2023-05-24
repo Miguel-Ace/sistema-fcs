@@ -23,8 +23,11 @@ return new class extends Migration
             $table->string('correo');
             $table->string('tipo');
             $table->string('fecha_inicio');
-            $table->string('fecha_final');
+            $table->string('fecha_final')->nullable();
             $table->string('fecha_nacimiento');
+            $table->string('provincia');
+            $table->string('canton');
+            $table->string('barrio');
             $table->bigInteger('id_metodo_pago')->unsigned();
             $table->bigInteger('id_banco')->unsigned();
             $table->timestamps();

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EvaluacionesPsicologica;
+use App\Models\Clinica;
+use App\Models\Comunidad;
 use App\Models\Expediente;
-use App\Models\Medico;
 use Illuminate\Http\Request;
+use App\Models\EvaluacionesPsicologica;
 
 class EvaluacionesPsicologicaController extends Controller
 {
@@ -22,8 +23,9 @@ class EvaluacionesPsicologicaController extends Controller
     {
         $busqueda = $request->buscar;
         $datos = EvaluacionesPsicologica::where('id_expediente','like','%'.$busqueda.'%')
-                                        ->paginate(6);
-        return view('evaluaciones_psicologicas.index', compact('datos','busqueda'));
+        ->paginate(6);
+        $comunidades = Comunidad::all();
+        return view('evaluaciones_psicologicas.index', compact('datos','busqueda','comunidades'));
     }
 
     /**
@@ -33,9 +35,10 @@ class EvaluacionesPsicologicaController extends Controller
      */
     public function create()
     {
-        $medicos = Medico::all();
+        $clinicas = Clinica::all();
         $expedientes = Expediente::all();
-        return view('evaluaciones_psicologicas.create', compact('medicos','expedientes'));
+        $comunidades = Comunidad::all();
+        return view('evaluaciones_psicologicas.create', compact('expedientes','comunidades','clinicas'));
     }
 
     /**
@@ -47,9 +50,10 @@ class EvaluacionesPsicologicaController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'id_medico' => 'required',
+            'id_clinica' => 'required',
             'id_expediente' => 'required',
             'categoria_psicologica' => 'required',
+            'id_comunidad' => 'required',
             'nota' => 'required',
             'semaforo' => 'required',
         ]);
@@ -67,7 +71,8 @@ class EvaluacionesPsicologicaController extends Controller
     public function show($id)
     {
         $datos = EvaluacionesPsicologica::find($id);
-        return view('evaluaciones_psicologicas.show', compact('datos'));
+        $comunidades = Comunidad::all();
+        return view('evaluaciones_psicologicas.show', compact('datos','comunidades'));
     }
 
     /**
@@ -79,9 +84,10 @@ class EvaluacionesPsicologicaController extends Controller
     public function edit($id)
     {
         $datos = EvaluacionesPsicologica::findOrFail($id);
-        $medicos = Medico::all();
+        $clinicas = Clinica::all();
         $expedientes = Expediente::all();
-        return view('evaluaciones_psicologicas.edit', compact('datos','medicos','expedientes'));
+        $comunidades = Comunidad::all();
+        return view('evaluaciones_psicologicas.edit', compact('datos','expedientes','comunidades','clinicas'));
     }
 
     /**

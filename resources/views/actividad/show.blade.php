@@ -24,17 +24,17 @@
                 </div>
 
                 <div>
-                    <p><span>Fecha De Creación:</span> {{$datos->fecha_creacion}}</p>
+                    <p><span>Rubro:</span> {{$datos->rubro}}</p>
                     <p><span>Patrocinador:</span> {{$datos->patrocinador}}</p>
                 </div>
-
+                
+                <div>
+                    <p><span>Fecha De Creación:</span> {{$datos->fecha_creacion}}</p>
+                    <p><span>Tipo de Asistencia:</span> {{$datos->tipoAsistencias->tipo_asistencia}}</p>
+                </div>
+                
                 <div>
                     <p><span>Fecha De Actividad:</span> {{$datos->fecha_actividad}}</p>
-
-                </div>
-
-                <div>
-                    <p><span>Tipo de Asistencia:</span> {{$datos->tipoAsistencias->tipo_asistencia}}</p>
 
                 </div>
             </div>

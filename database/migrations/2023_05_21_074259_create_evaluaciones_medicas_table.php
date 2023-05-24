@@ -17,24 +17,16 @@ return new class extends Migration
             $table->engine="InnoDB";
             $table->id();
             $table->bigInteger('id_expediente')->unsigned();
-            $table->bigInteger('id_medico')->unsigned();
+            $table->bigInteger('id_clinica')->unsigned();
             $table->string('fecha');
-            $table->string('cancer');
-            $table->string('asma');
-            $table->string('diabetes');
-            $table->string('epilepcia');
-            $table->string('enfermedad_corazon');
-            $table->string('ostogenesis');
-            $table->string('sindrome_piernas_inquietas');
-            $table->string('otras_enfermedades');
+            $table->string('peso');
+            $table->string('talla');
+            $table->string('signos');
             $table->string('notas')->nullable();
-            $table->string('frenillos');
-            $table->string('anteojos');
-            $table->string('semaforo');
             $table->timestamps();
 
             $table->foreign('id_expediente')->references('id')->on('expedientes');
-            $table->foreign('id_medico')->references('id')->on('medicos');
+            $table->foreign('id_clinica')->references('id')->on('clinicas');
         });
     }
 

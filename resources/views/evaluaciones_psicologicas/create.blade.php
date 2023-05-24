@@ -28,18 +28,18 @@
             @endif
             <form action="{{url('/evaluaciones_psicologicas')}}" class="row" method="post">
                 @csrf
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-4">{{-- Inicio --}}
 
-                <label for="id_medico" class="form-label">Medico</label>
-                <select class="form-select mb-3" id="id_medico" name="id_medico">
-                    @foreach ($medicos as $medico)
-                        <option value="{{$medico->id}}">{{$medico->nombre}} {{$medico->apellido}}</option>
+                <label for="id_clinica" class="form-label">Clínica</label>
+                <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                    @foreach ($clinicas as $clinica)
+                        <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
                     @endforeach
                 </select>
 
                 </div>
 
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-4">{{-- Inicio --}}
                     <label for="id_expediente" class="form-label">Expediente</label>
                     <select class="form-select mb-3" id="id_expediente" name="id_expediente">
                         @foreach ($expedientes as $expediente)
@@ -48,15 +48,24 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-4">{{-- Inicio --}}
                     <div class="mb-3">
                         <label for="categoria_psicologica" class="form-label">Categoria Psicológica</label>
                         <input type="text" class="form-control" id="categoria_psicologica" name="categoria_psicologica" value="{{old('categoria_psicologica')}}">
                     </div>
                 </div>
 
+                <div class="col-md-6">{{-- Inicio --}}
+                    <label for="id_comunidad" class="form-label">Comunidad</label>
+                    <select class="form-select mb-3" id="id_comunidad" name="id_comunidad">
+                        <option value="">Selecciona Comunidad</option>
+                        @foreach ($comunidades as $comunidad)
+                        <option value="{{$comunidad->comunidad}}">{{$comunidad->comunidad}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                <div class="col-md-3">{{-- Inicio --}}
+                <div class="col-md-6">{{-- Inicio --}}
 
                 <label for="semaforo" class="form-label">Semaforo</label>
                 <select class="form-select mb-3" id="semaforo" name="semaforo">
@@ -96,44 +105,53 @@
 
                 <form action="{{url('/evaluaciones_psicologicas')}}" class="row" method="post">
                     @csrf
-                    <div class="col-md-3">{{-- Inicio --}}
+                    <div class="col-md-4">{{-- Inicio --}}
 
-                    <label for="id_medico" class="form-label">Medico</label>
-                    <select class="form-select mb-3" id="id_medico" name="id_medico">
-                        @foreach ($medicos as $medico)
-                            <option value="{{$medico->id}}">{{$medico->nombre}} {{$medico->apellido}}</option>
-                        @endforeach
-                    </select>
-
-                    </div>
-
-                    <div class="col-md-3">{{-- Inicio --}}
-                        <label for="id_expediente" class="form-label">Expediente</label>
-                        <select class="form-select mb-3" id="id_expediente" name="id_expediente">
-                            @foreach ($expedientes as $expediente)
-                            <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
+                        <label for="id_clinica" class="form-label">Clínica</label>
+                        <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                            @foreach ($clinicas as $clinica)
+                                <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
                             @endforeach
                         </select>
-                    </div>
 
-                    <div class="col-md-3">{{-- Inicio --}}
-                        <div class="mb-3">
-                            <label for="categoria_psicologica" class="form-label">Categoria Psicológica</label>
-                            <input type="text" class="form-control" id="categoria_psicologica" name="categoria_psicologica">
                         </div>
-                    </div>
 
+                        <div class="col-md-4">{{-- Inicio --}}
+                            <label for="id_expediente" class="form-label">Expediente</label>
+                            <select class="form-select mb-3" id="id_expediente" name="id_expediente">
+                                @foreach ($expedientes as $expediente)
+                                <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="col-md-3">{{-- Inicio --}}
+                        <div class="col-md-4">{{-- Inicio --}}
+                            <div class="mb-3">
+                                <label for="categoria_psicologica" class="form-label">Categoria Psicológica</label>
+                                <input type="text" class="form-control" id="categoria_psicologica" name="categoria_psicologica" value="{{old('categoria_psicologica')}}">
+                            </div>
+                        </div>
 
-                    <label for="semaforo" class="form-label">Semaforo</label>
-                    <select class="form-select mb-3" id="semaforo" name="semaforo">
-                        <option value="Verde">Verde</option>
-                        <option value="Rojo">Rojo</option>
-                        <option value="Amarillo">Amarillo</option>
-                    </select>
+                        <div class="col-md-6">{{-- Inicio --}}
+                            <label for="id_comunidad" class="form-label">Comunidad</label>
+                            <select class="form-select mb-3" id="id_comunidad" name="id_comunidad">
+                                <option value="">Selecciona Comunidad</option>
+                                @foreach ($comunidades as $comunidad)
+                                <option value="{{$comunidad->comunidad}}">{{$comunidad->comunidad}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    </div>
+                        <div class="col-md-6">{{-- Inicio --}}
+
+                        <label for="semaforo" class="form-label">Semaforo</label>
+                        <select class="form-select mb-3" id="semaforo" name="semaforo">
+                            <option value="Verde">Verde</option>
+                            <option value="Rojo">Rojo</option>
+                            <option value="Amarillo">Amarillo</option>
+                        </select>
+
+                        </div>
 
                     <div class="mb-3">
                         <label for="nota" class="form-label">Nota</label>

@@ -26,4 +26,7 @@ class Expediente extends Model
     function centro_educativos(){
         return $this->belongsTo(CentroEducativo::class, 'id_centro_educativo');
     }
+    // function enfermedades(){
+    //     return $this->belongsTo(Enfermedad::class, 'id_enfermedad');
+    // }
 }

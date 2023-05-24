@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('contenido')
-    <h1 class="text-left p-2">Expedientes</h1>
+    <h1 class="text-left p-2">Expediente</h1>
     <div class="container">
 
         <a href="{{url('/expedientes')}}" class="btn btn-warning mb-3">
@@ -106,16 +106,16 @@
                         <input type="text" class="form-control" value="{{$datos->nombre2}}" id="nombre2" name="nombre2">
                       </div>
 
-                      <div class="mb-3">
+                      {{-- <div class="mb-3">
                         <label for="edad" class="form-label">Edad</label>
                         <input type="number" class="form-control" id="edad" min="0" name="edad" value="{{$datos->edad}}">
-                      </div>
+                      </div> --}}
 
                       <label for="padrino" class="form-label">Padrino</label>
                       <select class="form-select mb-3" id="padrino" name="padrino">
                           <option value="" disabled>Selecciona el padrino</option>
                           @foreach ($padrinos as $padrino)
-                            @if ($padrino->id === $datos->padrino)
+                            @if ($padrino->id == $datos->padrino)
                               <option value="{{$padrino->id}}" selected>{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
                             @else
                               <option value="{{$padrino->id}}">{{$padrino->nombre . ' ' . $padrino->apellido}}</option>
@@ -123,10 +123,10 @@
                           @endforeach
                       </select>
 
-                      <div class="mb-3">
+                      {{-- <div class="mb-3">
                         <label for="representantePEM" class="form-label">RepresentantePEM</label>
                         <input type="text" class="form-control" value="{{$datos->representantePEM}}" id="representantePEM" name="representantePEM">
-                      </div>
+                      </div> --}}
 
                       <label for="id_estado" class="form-label">Estado</label>
                       <select class="form-select mb-3" id="id_estado" name="id_estado">
@@ -193,9 +193,16 @@
                           @endif
                       </select>
 
-                      
-
-
+                      <label for="activo" class="form-label">Activo</label>
+                      <select class="form-select mb-3" id="activo" name="activo">
+                          @if ($datos->activo === "Si")
+                            <option value="Si" selected>Si</option>
+                            <option value="No">No</option>
+                          @else
+                            <option value="Si">Si</option>
+                            <option value="No" selected>No</option>
+                          @endif
+                      </select>
                   </div>{{-- Fin --}}
 
                   <div class="col-md-3">{{-- Inicio --}}
@@ -204,14 +211,14 @@
                       <label for="apellido1" class="form-label">Primer Apellido</label>
                       <input type="text" class="form-control" value="{{$datos->apellido1}}" id="apellido1" name="apellido1">
                     </div>
-                    
+
                     <div class="mb-3">
                       <label for="escuela" class="form-label">Escuela</label>
                       <input type="text" class="form-control" id="escuela" name="escuela" value="{{$datos->escuela}}">
                     </div>
 
                     <div class="mb-3">
-                      <label for="contacto_representante" class="form-label">Contacto Representante</label>
+                      <label for="contacto_representante" class="form-label">Contacto PME</label>
                       <input type="number" min="0" class="form-control" value="{{$datos->contacto_representante}}" id="contacto_representante" name="contacto_representante">
                     </div>
 
@@ -234,28 +241,28 @@
 
                     <label for="talla_camisa" class="form-label">Talla Camisa</label>
                       <select class="form-select mb-3" id="talla_camisa" name="talla_camisa">
-                        @if ($datos->talla_pantalon === "S")
+                        @if ($datos->talla_camisa === "S")
                         <option value="S" selected>S</option>
                         <option value="M">M</option>
                         <option value="L">L</option>
                         <option value="XL">XL</option>
                         <option value="2XL">2XL</option>
 
-                        @elseif ($datos->talla_pantalon === "M")
+                        @elseif ($datos->talla_camisa === "M")
                         <option value="S">S</option>
                         <option value="M" selected>M</option>
                         <option value="L">L</option>
                         <option value="XL">XL</option>
                         <option value="2XL">2XL</option>
 
-                        @elseif ($datos->talla_pantalon === "L")
+                        @elseif ($datos->talla_camisa === "L")
                         <option value="S">S</option>
                         <option value="M">M</option>
                         <option value="L" selected>L</option>
                         <option value="XL">XL</option>
                         <option value="2XL">2XL</option>
 
-                        @elseif ($datos->talla_pantalon === "XL")
+                        @elseif ($datos->talla_camisa === "XL")
                         <option value="S">S</option>
                         <option value="M">M</option>
                         <option value="L">L</option>
@@ -271,17 +278,7 @@
                         @endif
                       </select>
 
-                      <label for="activo" class="form-label">Activo</label>
-                      <select class="form-select mb-3" id="activo" name="activo">
-                          @if ($datos->activo === "Si")
-                            <option value="Si" selected>Si</option>
-                            <option value="No">No</option>
-                          @else
-                            <option value="Si">Si</option>
-                            <option value="No" selected>No</option>
-                          @endif
-                      </select>
-                      
+
                     </div>{{-- Fin --}}
 
                     <div class="col-md-3">{{-- Inicio --}}
@@ -302,7 +299,7 @@
                             @endif
                           @endforeach
                       </select>
-                      
+
                       <div class="mb-3">
                         <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
                         <input type="date" class="form-control" value="{{$datos->fecha_nacimiento}}" id="fecha_nacimiento" name="fecha_nacimiento">
@@ -343,7 +340,7 @@
         @endrole
 
         @hasrole('editor')
- 
+
         @endrole
 
     </div>

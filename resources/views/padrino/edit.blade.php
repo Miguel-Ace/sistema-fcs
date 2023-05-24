@@ -29,14 +29,25 @@
                             <input type="text" class="form-control" value="{{$datos->nombre}}" id="nombre" name="nombre">
                         </div>
     
-                        <div class="mb-3">
-                            <label for="correo" class="form-label">Correo</label>
-                            <input type="email" class="form-control" value="{{$datos->correo}}" id="correo" name="correo">
-                        </div>
-    
+                        <label for="canton" class="form-label">Canton</label>
+                        <select class="form-select mb-3" id="canton" name="canton">
+                            @foreach ($cantones as $canton)
+                                @if ($canton->canton === $datos->canton)
+                                    <option value="{{$canton->canton}}" selected>{{$canton->canton}}</option>
+                                @else
+                                    <option value="{{$canton->canton}}">{{$canton->canton}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+
                         <div class="mb-3">
                             <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
                             <input type="date" class="form-control" value="{{$datos->fecha_nacimiento}}" id="fecha_nacimiento" name="fecha_nacimiento">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fecha_final" class="form-label">Fecha Final</label>
+                            <input type="date" class="form-control" value="{{$datos->fecha_final}}" id="fecha_final" name="fecha_final">
                         </div>
                       </div>
                       
@@ -46,21 +57,23 @@
                             <input type="text" class="form-control" value="{{$datos->apellido}}" id="apellido" name="apellido">
                         </div>
     
-                        <div class="mb-3">
-                            <label for="tipo" class="form-label">Tipo</label>
-                            <input type="text" class="form-control" value="{{$datos->tipo}}" id="tipo" name="tipo">
-                        </div>
-    
-                        <label for="id_metodo_pago" class="form-label">Método Pago</label>
-                        <select class="form-select mb-3" id="id_metodo_pago" name="id_metodo_pago">
-                            @foreach ($metodoPagos as $metodoPago)
-                                @if ($metodoPago->id === $datos->metodos_pagos->id)
-                                    <option value="{{$metodoPago->id}}" selected>{{$metodoPago->metodo_pago}}</option>
+                        <label for="barrio" class="form-label">Barrio</label>
+                        <select class="form-select mb-3" id="barrio" name="barrio">
+                            @foreach ($barrios as $barrio)
+                                @if ($barrio->barrio === $datos->barrio)
+                                    <option value="{{$barrio->barrio}}" selected>{{$barrio->barrio}}</option>
                                 @else
-                                    <option value="{{$metodoPago->id}}">{{$metodoPago->metodo_pago}}</option>
+                                    <option value="{{$barrio->barrio}}">{{$barrio->barrio}}</option>
                                 @endif
                             @endforeach
                         </select>
+
+                        <div class="mb-3">
+                            <label for="fecha_inicio" class="form-label">Fecha Inicial</label>
+                            <input type="date" class="form-control" value="{{$datos->fecha_inicio}}" id="fecha_inicio" name="fecha_inicio">
+                        </div>
+    
+                        
                     </div>
                           
                     <div class="col-md-3">
@@ -70,10 +83,31 @@
                         </div>
     
                         <div class="mb-3">
-                            <label for="fecha_inicio" class="form-label">Fecha Inicial</label>
-                            <input type="date" class="form-control" value="{{$datos->fecha_inicio}}" id="fecha_inicio" name="fecha_inicio">
+                            <label for="correo" class="form-label">Correo</label>
+                            <input type="email" class="form-control" value="{{$datos->correo}}" id="correo" name="correo">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo</label>
+                            <input type="text" class="form-control" value="{{$datos->tipo}}" id="tipo" name="tipo">
+                        </div>
+                        
     
+                        
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="provincia" class="form-label">Provincia</label>
+                        <select class="form-select mb-3" id="provincia" name="provincia">
+                            @foreach ($provincias as $provincia)
+                                @if ($provincia->provincia === $datos->provincia)
+                                    <option value="{{$provincia->provincia}}" selected>{{$provincia->provincia}}</option>
+                                @else
+                                    <option value="{{$provincia->provincia}}">{{$provincia->provincia}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+
                         <label for="id_banco" class="form-label">Banco</label>
                         <select class="form-select mb-3" id="id_banco" name="id_banco">
                             @foreach ($bancos as $banco)
@@ -84,15 +118,18 @@
                                 @endif
                             @endforeach
                         </select>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        
-                        <div class="mb-3">
-                            <label for="fecha_final" class="form-label">Fecha Final</label>
-                            <input type="date" class="form-control" value="{{$datos->fecha_final}}" id="fecha_final" name="fecha_final">
-                        </div>
-                        
+
+                        <label for="id_metodo_pago" class="form-label">Método Pago</label>
+                        <select class="form-select mb-3" id="id_metodo_pago" name="id_metodo_pago">
+                            @foreach ($metodoPagos as $metodoPago)
+                                @if ($metodoPago->id === $datos->metodos_pagos->id)
+                                    <option value="{{$metodoPago->id}}" selected>{{$metodoPago->metodo_pago}}</option>
+                                @else
+                                    <option value="{{$metodoPago->id}}">{{$metodoPago->metodo_pago}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+
                     </div>
                     <div class="mb-3">
                         <label for="direccion" class="form-label">Dirección</label>

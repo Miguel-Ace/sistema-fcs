@@ -27,106 +27,49 @@
           @endif
             <form action="{{url('/evaluaciones_medicas')}}" class="row" method="post">
               @csrf
-              <div class="col-md-3">{{-- Inicio --}}
-                      <label for="id_expediente" class="form-label">Expediente</label>
+              <div class="col-md-4">{{-- Inicio --}}
+                      <label for="id_expediente" class="form-label">Expediente PME</label>
                       <select class="form-select mb-3" id="id_expediente" name="id_expediente">
                           @foreach ($expedientes as $expediente)
                               <option value="{{$expediente->id}}">{{$expediente->nombre1}} {{$expediente->nombre2}} {{$expediente->apellido1}} {{$expediente->apellido2}}</option>
                           @endforeach
                       </select>
 
-                      <label for="cancer" class="form-label">Cancer</label>
-                      <select class="form-select mb-3" id="cancer" name="cancer">
-                          <option value="Si">Si</option>
-                          <option value="No" selected>No</option>
-                      </select>
+                      <div class="mb-3">
+                        <label for="peso" class="form-label">Peso</label>
+                        <input type="number" class="form-control" id="peso" name="peso" min="0" step=".1" value="{{old('peso')}}">
+                      </div>
 
-                    <label for="asma" class="form-label">Asma</label>
-                    <select class="form-select mb-3" id="asma" name="asma">
-                        <option value="Si">Si</option>
-                        <option value="No" selected>No</option>
-                    </select>
-
-                      <label for="ostogenesis" class="form-label">Ostogenesis</label>
-                        <select class="form-select mb-3" id="ostogenesis" name="ostogenesis">
-                            <option value="Si">Si</option>
-                            <option value="No" selected>No</option>
-                        </select>
                     </div>{{-- Fin --}}
 
-                    <div class="col-md-3">{{-- Inicio --}}
-                      <label for="id_medico" class="form-label">Medico</label>
-                      <select class="form-select mb-3" id="id_medico" name="id_medico">
-                          @foreach ($medicos as $medico)
-                              <option value="{{$medico->id}}">{{$medico->nombre}} {{$medico->apellido}}</option>
-                          @endforeach
-                      </select>
-
-                        <label for="epilepcia" class="form-label">Epilepsia</label>
-                        <select class="form-select mb-3" id="epilepcia" name="epilepcia">
-                            <option value="Si">Si</option>
-                            <option value="No" selected>No</option>
+                    <div class="col-md-4">{{-- Inicio --}}
+                        <label for="id_clinica" class="form-label">Clínica</label>
+                        <select class="form-select mb-3" id="id_clinica" name="id_clinica">
+                            @foreach ($clinicas as $clinica)
+                                <option value="{{$clinica->id}}">{{$clinica->clinica}}</option>
+                            @endforeach
                         </select>
 
-                        <label for="enfermedad_corazon" class="form-label">Enfermedades Cardiacas</label>
-                        <select class="form-select mb-3" id="enfermedad_corazon" name="enfermedad_corazon">
-                            <option value="Si">Si</option>
-                            <option value="No" selected>No</option>
-                        </select>
+                        <div class="mb-3">
+                            <label for="talla" class="form-label">Talla</label>
+                            <input type="number" class="form-control" id="talla" min="0" step=".1" name="talla" value="{{old('talla')}}">
+                        </div>
+                    </div>{{-- Fin --}}
 
 
-
-                    <label for="sindrome_piernas_inquietas" class="form-label">Sindrome Piernas Inquietas</label>
-                    <select class="form-select mb-3" id="sindrome_piernas_inquietas" name="sindrome_piernas_inquietas">
-                        <option value="Si">Si</option>
-                        <option value="No" selected>No</option>
-                    </select>
-                </div>{{-- Fin --}}
-
-
-                  <div class="col-md-3">{{-- Inicio --}}
-
+                <div class="col-md-4">{{-- Inicio --}}
                     <div class="mb-3">
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" class="form-control" id="fecha" name="fecha" value="{{old('fecha')}}">
                     </div>
 
-                      <label for="frenillos" class="form-label">Frenillos</label>
-                    <select class="form-select mb-3" id="frenillos" name="frenillos">
-                      <option value="Si">Si</option>
-                      <option value="No" selected>No</option>
-                    </select>
-
-
-                    <label for="anteojos" class="form-label">Anteojos</label>
-                    <select class="form-select mb-3" id="anteojos" name="anteojos">
-                        <option value="Si">Si</option>
-                        <option value="No" selected>No</option>
-                      </select>
-
-                    <label for="otras_enfermedades" class="form-label">Otras Enfermedades</label>
-                    <select class="form-select mb-3" id="otras_enfermedades" name="otras_enfermedades">
-                        <option value="Si">Si</option>
-                        <option value="No" selected>No</option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="signos" class="form-label">Signos</label>
+                        <input type="number" class="form-control" id="signos" min="0" step=".1" name="signos" value="{{old('signos')}}">
+                    </div>
                 </div>{{-- Fin --}}
 
-                <div class="col-md-3">{{-- Inicio --}}
 
-                      <label for="diabetes" class="form-label">Diabetes</label>
-                      <select class="form-select mb-3" id="diabetes" name="diabetes">
-                          <option value="Si">Si</option>
-                          <option value="No" selected>No</option>
-                      </select>
-
-
-                    <label for="semaforo" class="form-label">Semáforo</label>
-                    <select class="form-select mb-3" id="semaforo" name="semaforo">
-                        <option value="Verde">Verde</option>
-                        <option value="Rojo">Rojo</option>
-                        <option value="Amarillo">Amarillo</option>
-                    </select>
-                </div>{{-- Fin --}}
                 <div class="mb-3">
                     <label for="notas" class="form-label">Notas</label>
                     <input type="text" class="form-control" id="notas" name="notas" value="{{old('notas')}}">

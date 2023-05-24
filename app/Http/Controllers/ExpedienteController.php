@@ -8,6 +8,7 @@ use App\Models\Barrio;
 use App\Models\Estado;
 use App\Models\Padrino;
 use App\Models\Comunidad;
+use App\Models\Enfermedad;
 use App\Models\Expediente;
 use App\Models\TipoPobreza;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DetalleActividad;
 use App\Models\EvaluacionesMedica;
 use Illuminate\Support\Facades\DB;
+use App\Models\DetalleEvaluacionMedica;
 use App\Models\EvaluacionesPsicologica;
 
 class ExpedienteController extends Controller
@@ -41,20 +43,20 @@ class ExpedienteController extends Controller
 
         // $idBuscado = 1;
         // // $idBuscados = Expediente::pluck('id');
-    
+
         // // Buscar el registro correspondiente en cada tabla
         // $evaluacionMedicas = EvaluacionesMedica::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
         // $evaluacionPsicologicas = EvaluacionesPsicologica::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
         // $notas = Nota::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
         // $detalleActividades = DetalleActividad::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
-    
+
         // // Obtener el valor del semaforo correspondiente
         // // Evaluaciones Medicas
         // $semaforo = 'Verde';
         // $evaMedicas = collect([
         //     $evaluacionMedicas,
         // ]);
-    
+
         // foreach ($evaMedicas as $evaMedica) {
         //     foreach ($evaMedica as $item) {
         //         if ($item->id_expediente == $idBuscado) {
@@ -63,13 +65,13 @@ class ExpedienteController extends Controller
         //         }
         //     }
         // }
-    
+
         // // Evaluaciones Psicologicas
         // $semaforo2 = 'Verde';
         //     $evaPsicologicas = collect([
         //         $evaluacionPsicologicas,
         //     ]);
-    
+
         //     foreach ($evaPsicologicas as $evaPsicologica) {
         //         foreach ($evaPsicologica as $item) {
         //             if ($item->id_expediente == $idBuscado) {
@@ -78,13 +80,13 @@ class ExpedienteController extends Controller
         //             }
         //         }
         //     }
-    
+
         //     // Notas
         //     $semaforo3 = 'Verde';
         //         $sNotas = collect([
         //             $notas,
         //         ]);
-    
+
         //         foreach ($sNotas as $sNota) {
         //             foreach ($sNota as $item) {
         //                 if ($item->id_expediente == $idBuscado) {
@@ -93,13 +95,13 @@ class ExpedienteController extends Controller
         //                 }
         //             }
         //         }
-                
+
         //     // Detalle Actividad
         //     $semaforo4 = 'Verde';
         //         $detalleActividads = collect([
         //             $detalleActividades,
         //         ]);
-    
+
         //         foreach ($detalleActividads as $detalleActividad) {
         //             foreach ($detalleActividad as $item) {
         //                 if ($item->id_expediente == $idBuscado) {
@@ -107,7 +109,7 @@ class ExpedienteController extends Controller
         //                 }
         //             }
         //         }
-    
+
         // $semaforos = array($semaforo, $semaforo2, $semaforo3, $semaforo4);
 
         // // Contar cuántas veces aparece cada valor en el array
@@ -116,11 +118,12 @@ class ExpedienteController extends Controller
         // // Encontrar el valor que aparece más veces en el array
         // $semaforo_mas_repetido = array_search(max($contador), $contador);
 
-        $evaluacionMedicas = EvaluacionesMedica::all();
+        // $evaluacionMedicas = EvaluacionesMedica::all();
+        $detalleEvaluacionMedicas = DetalleEvaluacionMedica::all();
         $evaluacionPsicologicas = EvaluacionesPsicologica::all();
         $notas = Nota::all();
         $detalleActividades = DetalleActividad::all();
-        
+
         $semaforo = 'Verde';
         $semaforo2 = 'Verde';
         $semaforo3 = 'Verde';
@@ -138,7 +141,7 @@ class ExpedienteController extends Controller
                             ->orWhere('apellido2','like','%'.$busqueda.'%')
                             ->orWhere('sexo','like','%'.$busqueda.'%')
                             ->paginate(6);
-        return view('expedientes.index', compact('datos','busqueda','evaluacionMedicas','evaluacionPsicologicas','notas','detalleActividades','semaforo','semaforo2','semaforo3','semaforo4','id','id2','id3','id4'));
+        return view('expedientes.index', compact('datos','busqueda','detalleEvaluacionMedicas','evaluacionPsicologicas','notas','detalleActividades','semaforo','semaforo2','semaforo3','semaforo4','id','id2','id3','id4'));
     }
 
     // public function pdf()
@@ -164,7 +167,8 @@ class ExpedienteController extends Controller
         $padrinos = Padrino::all();
         $becas = Beca::all();
         $cantidad = Expediente::count();
-        return view('expedientes.create', compact('comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos','padrinos','becas','cantidad'));
+        $enfermedades = Enfermedad::all();
+        return view('expedientes.create', compact('enfermedades','comunidades','estados','tipoPobrezas','barrios','gradoEscolares','centroEducativos','padrinos','becas','cantidad'));
     }
 
     /**
@@ -188,7 +192,7 @@ class ExpedienteController extends Controller
             'id_tipo_pobreza' => 'required',
             'id_barrio' => 'required',
             'fecha_nacimiento' => 'required',
-            'representantePEM' => 'required',
+            // 'representantePEM' => 'required',
             'contacto_representante' => 'required|min:8|max:8',
             'id_grado_escolar' => 'required',
             'talla_pantalon' => 'required',
@@ -198,10 +202,9 @@ class ExpedienteController extends Controller
             'nombre_encargado' => 'required',
             'telefono_encargado' => 'required|min:8|max:8',
             'id_centro_educativo' => 'required',
-            'padrino' => 'required',
             'escuela' => 'required',
-            'beca' => 'required',
-            'edad' => 'required',
+            // 'beca' => 'required',
+            // 'edad' => 'required',
         ]);
         $datos = $request->except('_token');
         Expediente::insert($datos);
@@ -217,7 +220,16 @@ class ExpedienteController extends Controller
     public function show($id)
     {
         $datos = Expediente::find($id);
-        return view('expedientes.show', compact('datos'));
+        $fecha_nacimiento = $datos->fecha_nacimiento;
+
+        $fecha_nacimiento = \Carbon\Carbon::parse($fecha_nacimiento);
+
+        $fecha_actual = \Carbon\Carbon::now();
+
+        $edad = $fecha_nacimiento->diffInYears($fecha_actual);
+
+        // $datos = Expediente::find($id);
+        return view('expedientes.show', compact('datos','edad'));
     }
 
     /**

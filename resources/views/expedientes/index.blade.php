@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('contenido')
-    <h1 class="text-left p-2">Expedientes</h1>
+    <h1 class="text-left p-2">Expediente</h1>
     <div class="container">
 
         @role('admin')
@@ -43,6 +43,7 @@
                             <th scope="col">Primer Nombre</th>
                             <th scope="col">Primer Apellido</th>
                             <th scope="col">Fecha De Nacimiento</th>
+                            <th scope="col">Edad</th>
                             <th scope="col">Sexo</th>
                             <th scope="col">Nombre Encargado</th>
                             <th scope="col">Telefono Encargado</th>
@@ -57,20 +58,27 @@
                     </thead>
                     <tbody class="text-center">
                         @foreach ($datos as $dato)
+                            @php
+                                $fecha_nacimiento = $dato->fecha_nacimiento;
+                                $fecha_nacimiento = \Carbon\Carbon::parse($fecha_nacimiento);
+                                $fecha_actual = \Carbon\Carbon::now();
+                                $edad = $fecha_nacimiento->diffInYears($fecha_actual);
+                            @endphp
                             <tr>
                                 {{-- <th>{{$dato->id}}</th> --}}
                                 <td>{{$dato->nombre1}}</td>
                                 <td>{{$dato->apellido1}}</td>
                                 <td>{{$dato->fecha_nacimiento}}</td>
+                                <td>{{$edad}}</td>
                                 <td>{{$dato->sexo}}</td>
                                 <td>{{$dato->nombre_encargado}}</td>
                                 <td>{{$dato->telefono_encargado}}</td>
 
                                 <td>
-                                    @foreach ($evaluacionMedicas as $evaluacionMedica)
-                                        @if ($dato->id == $evaluacionMedica->id_expediente)
-                                            <p class="d-none">{{ $semaforo = $evaluacionMedica->semaforo }}</p>
-                                            <p class="d-none">{{ $id = $evaluacionMedica->id_expediente }}</p>
+                                    @foreach ($detalleEvaluacionMedicas as $detalleEvaluacionMedica)
+                                        @if ($dato->id == $detalleEvaluacionMedica->id_expediente)
+                                            <p class="d-none">{{ $semaforo = $detalleEvaluacionMedica->semaforo }}</p>
+                                            <p class="d-none">{{ $id = $detalleEvaluacionMedica->id_expediente }}</p>
                                         @endif
                                     @endforeach
 
@@ -162,14 +170,14 @@
                                             "AmarilloVerdeAmarilloVerde" => "Amarillo"
                                             // Añade aquí todas las combinaciones necesarias
                                         ];
-                                        
+
                                         // Obtener la combinación actual de semáforos y su resultado correspondiente
                                         $combinacion_actual = $semaforo.$semaforo2.$semaforo3.$semaforo4;
                                         $resultado = isset($combinaciones[$combinacion_actual]) ? $combinaciones[$combinacion_actual] : "";
-                                        
+
                                         // Mostrar el resultado correspondiente
                                     @endphp
-                                    
+
                                     @if ($resultado == "Verde")
                                         <p style="background: rgba(83, 180, 83, .6)">Verde</p>
                                     @elseif ($resultado == "Rojo")
@@ -179,25 +187,18 @@
                                     @endif
                                 </td>
 
-                                {{-- @if ($dato->id === "Verde")
-                                    <td style="background: rgba(83, 180, 83, .6)">{{$dato->semaforo}}</td>
-                                @elseif ($dato->semaforo === "Rojo")
-                                    <td style="background: rgba(218, 78, 78, .5)">{{$dato->semaforo}}</td>
-                                @else
-                                    <td style="background: rgba(255, 255, 0, .4)">{{$dato->semaforo}}</td>
-                                @endif --}}
                                 @role('admin')
-                                    <td>
-                                        <a href="{{url('expedientes/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
-                                        |
-                                        <a href="{{url('expedientes/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
+                                <td>
+                                    <a href="{{url('expedientes/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
+                                    |
+                                    <a href="{{url('expedientes/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
 
-                                        {{-- <form action="{{'expedientes/'.$dato->id}}" method="post" class="d-inline">
-                                            @csrf
-                                            {{method_field('DELETE')}}
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')"><ion-icon name="beaker-outline"></ion-icon></button>
-                                        </form> --}}
-                                    </td>
+                                    {{-- <form action="{{'expedientes/'.$dato->id}}" method="post" class="d-inline">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás Seguro de borrarlo?')"><ion-icon name="beaker-outline"></ion-icon></button>
+                                    </form> --}}
+                                </td>
                                 @endrole
 
                                 @role('editor')

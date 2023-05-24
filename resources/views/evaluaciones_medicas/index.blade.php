@@ -54,12 +54,11 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Expediente</th>
-                            <th scope="col">Medico</th>
+                            {{-- <th scope="col">#</th> --}}
+                            <th scope="col">Expediente PEM</th>
+                            <th scope="col">Clínica</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Notas</th>
-                            <th scope="col">Semáforo</th>
                             @role('admin')
                             <th scope="col">Acciones</th>
                             @endrole
@@ -71,20 +70,18 @@
                     <tbody class="text-center">
                         @foreach ($datos as $dato)
                             <tr>
-                                <th>{{$dato->id_expediente}}</th>
+                                {{-- <th>{{$dato->id}}</th>
+                                <th>{{$dato->id_expediente}}</th> --}}
                                 <td>{{$dato->expedientes->nombre1}} {{$dato->expedientes->nombre2}} {{$dato->expedientes->apellido1}} {{$dato->expedientes->apellido2}}</td>
-                                <th>{{$dato->medicos->nombre}}</th>
+                                <th>{{$dato->clinicas->clinica}}</th>
                                 <td>{{$dato->fecha}}</td>
                                 <td>{{$dato->notas}}</td>
-                                @if ($dato->semaforo === "Verde")
-                                    <td style="background: rgba(83, 180, 83, .6)">{{$dato->semaforo}}</td>
-                                @elseif ($dato->semaforo === "Rojo")
-                                    <td style="background: rgba(218, 78, 78, .5)">{{$dato->semaforo}}</td>
-                                @else
-                                    <td style="background: rgba(255, 255, 0, .4)">{{$dato->semaforo}}</td>
-                                @endif
                                 @role('admin')
                                     <td>
+                                        <a href="{{url('enfermedades?buscar='.$dato->id_expediente)}}" class="btn btn-secondary"><ion-icon name="pulse-outline"></ion-icon></a>
+                                        |
+                                        <a href="{{url('detalle_evaluacion_medicas?buscar='.$dato->id)}}" class="btn btn-secondary"><ion-icon name="newspaper-outline"></ion-icon></a>
+                                        |
                                         <a href="{{url('evaluaciones_medicas/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
                                         |
                                         <a href="{{url('evaluaciones_medicas/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>
@@ -99,6 +96,10 @@
 
                                 @role('editor')
                                 <td>
+                                    <a href="{{url('enfermedades?buscar='.$dato->id_expediente)}}" class="btn btn-secondary"><ion-icon name="pulse-outline"></ion-icon></a>
+                                    |
+                                    <a href="{{url('detalle_evaluacion_medicas?buscar='.$dato->id)}}" class="btn btn-secondary"><ion-icon name="newspaper-outline"></ion-icon></a>
+                                    |
                                     <a href="{{url('evaluaciones_medicas/'.$dato->id)}}" class="btn btn-primary"><ion-icon name="eye-outline"></ion-icon></a>
                                     |
                                     <a href="{{url('evaluaciones_medicas/'.$dato->id.'/edit')}}" class="btn btn-success"><ion-icon name="brush-outline"></ion-icon></a>

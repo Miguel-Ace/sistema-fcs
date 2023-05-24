@@ -51,6 +51,7 @@ class ActividadController extends Controller
             'fecha_creacion' => 'required',
             'fecha_actividad' => 'required',
             'id_tipo_asistencia' => 'required',
+            'rubro' => 'required',
             'patrocinador' => 'required',
             // 'observacion' => 'required',
         ]);

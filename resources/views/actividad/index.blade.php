@@ -67,6 +67,7 @@
                         <tr>
                             {{-- <th scope="col">#</th> --}}
                             <th scope="col">Actividad</th>
+                            <th scope="col">Rubro</th>
                             <th scope="col">Fecha Creación</th>
                             <th scope="col">Fecha Actividad</th>
                             <th scope="col">Tipo Asistencia</th>
@@ -85,6 +86,7 @@
                             <tr class="text-center">
                                 {{-- <th>{{$dato->id}}</th> --}}
                                 <th>{{$dato->actividad}}</th>
+                                <th>{{$dato->rubro}}</th>
                                 <td>{{$dato->fecha_creacion}}</td>
                                 <td>{{$dato->fecha_actividad}}</td>
                                 <td>{{$dato->tipoAsistencias->tipo_asistencia}}</td>
