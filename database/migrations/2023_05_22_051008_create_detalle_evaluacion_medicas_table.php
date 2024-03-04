@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('medico');
             $table->string('diagnostico');
             $table->string('obsevacion');
-            $table->string('fecha');
             $table->string('semaforo');
             $table->string('nombre_diente')->nullable();
             $table->string('descripcion')->nullable();

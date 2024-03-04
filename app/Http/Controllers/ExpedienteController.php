@@ -36,89 +36,6 @@ class ExpedienteController extends Controller
      */
     public function index(Request $request)
     {
-        // $evaluacionMedicas = EvaluacionesMedica::select('id_expediente','semaforo')->get();
-        // $evaluacionPsicologicas = EvaluacionesPsicologica::select('id_expediente','semaforo')->get();
-        // $notas = Nota::select('id_expediente','semaforo')->get();
-        // $detalleActividades = DetalleActividad::select('id_expediente','semaforo')->get();
-
-        // $idBuscado = 1;
-        // // $idBuscados = Expediente::pluck('id');
-
-        // // Buscar el registro correspondiente en cada tabla
-        // $evaluacionMedicas = EvaluacionesMedica::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
-        // $evaluacionPsicologicas = EvaluacionesPsicologica::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
-        // $notas = Nota::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
-        // $detalleActividades = DetalleActividad::select('id_expediente','semaforo')->where('id_expediente', $idBuscado)->get();
-
-        // // Obtener el valor del semaforo correspondiente
-        // // Evaluaciones Medicas
-        // $semaforo = 'Verde';
-        // $evaMedicas = collect([
-        //     $evaluacionMedicas,
-        // ]);
-
-        // foreach ($evaMedicas as $evaMedica) {
-        //     foreach ($evaMedica as $item) {
-        //         if ($item->id_expediente == $idBuscado) {
-        //             $semaforo = $item->semaforo;
-        //             break 2;
-        //         }
-        //     }
-        // }
-
-        // // Evaluaciones Psicologicas
-        // $semaforo2 = 'Verde';
-        //     $evaPsicologicas = collect([
-        //         $evaluacionPsicologicas,
-        //     ]);
-
-        //     foreach ($evaPsicologicas as $evaPsicologica) {
-        //         foreach ($evaPsicologica as $item) {
-        //             if ($item->id_expediente == $idBuscado) {
-        //                 $semaforo2 = $item->semaforo;
-        //                 break 2;
-        //             }
-        //         }
-        //     }
-
-        //     // Notas
-        //     $semaforo3 = 'Verde';
-        //         $sNotas = collect([
-        //             $notas,
-        //         ]);
-
-        //         foreach ($sNotas as $sNota) {
-        //             foreach ($sNota as $item) {
-        //                 if ($item->id_expediente == $idBuscado) {
-        //                     $semaforo3 = $item->semaforo;
-        //                     break 2;
-        //                 }
-        //             }
-        //         }
-
-        //     // Detalle Actividad
-        //     $semaforo4 = 'Verde';
-        //         $detalleActividads = collect([
-        //             $detalleActividades,
-        //         ]);
-
-        //         foreach ($detalleActividads as $detalleActividad) {
-        //             foreach ($detalleActividad as $item) {
-        //                 if ($item->id_expediente == $idBuscado) {
-        //                     $semaforo4 = $item->semaforo;
-        //                 }
-        //             }
-        //         }
-
-        // $semaforos = array($semaforo, $semaforo2, $semaforo3, $semaforo4);
-
-        // // Contar cuántas veces aparece cada valor en el array
-        // $contador = array_count_values($semaforos);
-
-        // // Encontrar el valor que aparece más veces en el array
-        // $semaforo_mas_repetido = array_search(max($contador), $contador);
-
-        // $evaluacionMedicas = EvaluacionesMedica::all();
         $detalleEvaluacionMedicas = DetalleEvaluacionMedica::all();
         $evaluacionPsicologicas = EvaluacionesPsicologica::all();
         $notas = Nota::all();
@@ -135,12 +52,15 @@ class ExpedienteController extends Controller
         $id4 = 0;
 
         $busqueda = $request->buscar;
+        $busqueda = trim($busqueda);
+
         $datos = Expediente::where('nombre1','like','%'.$busqueda.'%')
                             ->orWhere('nombre2','like','%'.$busqueda.'%')
                             ->orWhere('apellido1','like','%'.$busqueda.'%')
                             ->orWhere('apellido2','like','%'.$busqueda.'%')
                             ->orWhere('sexo','like','%'.$busqueda.'%')
-                            ->paginate(6);
+                            ->orderByRaw("REPLACE(nombre1, ' ', '')")
+                            ->paginate(10);
         return view('expedientes.index', compact('datos','busqueda','detalleEvaluacionMedicas','evaluacionPsicologicas','notas','detalleActividades','semaforo','semaforo2','semaforo3','semaforo4','id','id2','id3','id4'));
     }
 
@@ -205,6 +125,11 @@ class ExpedienteController extends Controller
             'escuela' => 'required',
             // 'beca' => 'required',
             // 'edad' => 'required',
+        ], [
+            'nombre1.required' => 'Escriba el primer nombre',
+            'nombre2.required' => 'Escriba el segundo nombre o un guión (-)',
+            'apellido1.required' => 'Escriba el primer apellido',
+            'apellido2.required' => 'Escriba el segundo apellido o un guión (-)',
         ]);
         $datos = $request->except('_token');
         Expediente::insert($datos);
@@ -262,6 +187,19 @@ class ExpedienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'id_comunidad' => 'required',
+            'nombre1' => 'required',
+            'nombre2' => 'required',
+            'apellido1' => 'required',
+            'apellido2' => 'required',
+        ], [
+            'nombre1.required' => 'Escriba el primer nombre',
+            'nombre2.required' => 'Escriba el segundo nombre o un guión (-)',
+            'apellido1.required' => 'Escriba el primer apellido',
+            'apellido2.required' => 'Escriba el segundo apellido o un guión (-)',
+        ]);
+
         $datos = $request->except('_token','_method');
         Expediente::where('id','=',$id)->update($datos);
         return redirect('/expedientes');

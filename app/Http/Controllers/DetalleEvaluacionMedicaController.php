@@ -48,7 +48,7 @@ class DetalleEvaluacionMedicaController extends Controller
             'medico'=>'required',
             'diagnostico'=>'required',
             'obsevacion'=>'required',
-            // 'fecha'=>'required',
+            'fecha'=>'required',
             'nombre_diente'=>'nullable',
             'descripcion'=>'nullable',
             'semaforo'=>'required',

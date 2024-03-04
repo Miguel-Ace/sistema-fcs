@@ -18,6 +18,13 @@
             </div>
 
             <div class="col-md-12 fs-6"> {{-- Inicio --}}
+              @if ($errors->any())
+                  <ul class="bg-white text-danger p-2">
+                      @foreach ($errors->all() as $error)
+                      <li>{{$error}}</li>
+                      @endforeach
+                  </ul>
+              @endif
                 <form action="{{url('expedientes/'.$datos->id)}}" class="row" method="post">
                   @csrf
                   {{method_field('PATCH')}}
